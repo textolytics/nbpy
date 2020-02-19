@@ -1,0 +1,24 @@
+#!/bin/bash
+#!/usr/bin/expect
+set arg1 [lindex $argv 0];
+set arg2 [lindex $argv 1];
+set arg3 [lindex $argv 2];
+set arg4 [lindex $argv 3];
+set arg5 [lindex $argv 3];
+
+log_user 0;
+#set timeout 20
+spawn "/home/sdreep/nabla/countquotesday_usdchf"
+expect "*\r" 
+send "$arg1\r"
+expect "*\r" 
+send "$arg2\r"
+expect "*\r" 
+send "$arg3\r"
+expect "*\r" 
+send "$arg4\r"
+expect "*\r"
+send "$arg5\r"
+expect *
+set igot $expect_out(buffer)
+interact return -output $igot

@@ -1,0 +1,16 @@
+#!/bin/bash
+#!/usr/bin/expect
+set arg1 [lindex $argv 0];
+set arg2 [lindex $argv 1];
+set arg3 [lindex $argv 2];
+set arg4 [lindex $argv 3];
+
+log_user 0;
+#set timeout 20
+spawn "/home/sdreep/nabla/eurusdcontent"
+expect "Open" {send "$arg1\r"}
+expect "Hours" {send "$arg2\r"}
+expect "count_usd" {send "$arg3\r"}
+expect "count_eur" {send "$arg4\r"}
+#sleep 0.1
+interact return -output $expect_out(buffer)

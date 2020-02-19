@@ -1,0 +1,23 @@
+server {
+    listen 0.0.0.0:80;
+	listen [::]:80 nablas.ddns.net;
+    root /var/www/;
+    index index.html index.php;
+    include /etc/nginx/include/php;
+	return 301 https://staging.example.com$request_uri;
+}
+
+server {
+    listen 443 ssl nablas.ddns.net;
+	listen [::]:443 ssl nablas.ddns.net;
+	server_name nablas.ddns.net
+	
+    root /var/www/;
+    index index.html index.php;
+
+    fastcgi_param HTTPS on;
+    include /etc/nginx/include/ssl;
+    include /etc/nginx/include/php;
+}
+
+

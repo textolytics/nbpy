@@ -1,0 +1,29 @@
+var tick = stream
+    |from()
+        .measurement('tick')
+        .retentionPolicy('autogen')
+        .measurement('tick')
+    |window()
+        .periodCount(100)
+        .everyCount(1)
+
+var XETHZUSD = tick
+    |where(lambda: "instrument" == 'XETHZUSD')
+    |last('bid_price')
+        .as('XETHZUSD_bid_price')
+    |last('ask_price')
+        .as('XETHZUSD_ask_price')
+
+var XETHZEUR = tick
+    |where(lambda: "instrument" == 'XETHZEUR')
+    |last('bid_price')
+        .as('XETHZEUR_bid_price')
+    |last('ask_price')
+        .as('XETHZEUR_ask_price')
+
+var ETH_EUR_USD = tick
+    |eval(lambda: "XETHZEUR_ask_price" / "XETHZUSD_bid_price").quiet()
+        .as('ETH_EURUSD_BID')
+    |eval(lambda: "XETHZEUR_bid_price" / "XETHZUSD_ask_price").quiet()
+        .as('ETH_EURUSD_ASK')
+    |httpOut('ETH_EUR_USD')

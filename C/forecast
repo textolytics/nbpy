@@ -1,0 +1,15 @@
+#!/bin/bash
+VAL=$(/usr/bin/expect -- << EXPECTEND
+set timeout 220
+spawn "/home/sdreep/nabla/eurusdcount"
+expect "How many times the word dollar appeared last *\r" { send "12\r" }
+expect "Enter current EURUSD price*\r" { send "12\r" }
+expect "How many times the word euro *\r" { send "12\r" }
+expect "What time is *\r" { send "12\r" }
+sleep 0.1
+expect -re " $"
+set val $expect_out(5,string)
+send_user "$val"
+EXPECTEND);
+echo "$VAL"
+
