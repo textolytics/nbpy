@@ -1,0 +1,27 @@
+lxc.arch = amd64
+lxc.include = /usr/share/lxc/config/debian.common.conf
+lxc.include = /usr/share/lxc/config/debian.userns.conf
+lxc.monitor.unshare = 1
+lxc.idmap = u 0 100000 65536
+lxc.idmap = g 0 100000 65536
+lxc.tty.max = 2
+lxc.environment = TERM=linux
+lxc.uts.name = cuda
+lxc.cgroup.memory.limit_in_bytes = 2147483648
+lxc.cgroup.memory.memsw.limit_in_bytes = 4294967296
+lxc.cgroup.cpu.cfs_period_us = 100000
+lxc.cgroup.cpu.cfs_quota_us = 800000
+lxc.cgroup.cpu.shares = 1024
+lxc.rootfs.path = /var/lib/lxc/100/rootfs
+lxc.net.0.type = veth
+lxc.net.0.veth.pair = veth100i0
+lxc.net.0.hwaddr = A6:69:CF:32:81:91
+lxc.net.0.name = eth0
+lxc.cgroup.devices.allow = c 195:* rwm
+lxc.cgroup.devices.allow = c 243:* rwm
+lxc.mount.entry = /dev/nvidia0 dev/nvidia0 none bind,optional,create=file
+lxc.mount.entry = /dev/nvidiactl dev/nvidiactl none bind,optional,create=file
+lxc.mount.entry = /dev/nvidia-uvm dev/nvidia-uvm none bind,optional,create=file
+lxc.mount.entry = /dev/nvidia-modeset dev/nvidia-modeset none bind,optional,create=file
+lxc.mount.entry = /dev/nvidia-uvm-tools dev/nvidia-uvm-tools none bind,optional,create=file
+lxc.cgroup.cpuset.cpus = 0-7

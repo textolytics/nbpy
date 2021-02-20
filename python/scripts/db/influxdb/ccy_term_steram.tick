@@ -1,0 +1,62 @@
+// Get views stream data
+var base_bids = stream
+    |from()
+        .retentionPolicy('autgen')
+        .measurement('tick')
+    |window()
+        .periodCount(2)
+        .everyCount(1)
+    |last('bid_price')
+        .as('base_bids')
+    |groupBy('base_ccy')
+
+// Get views stream data
+var base_asks = stream
+    |from()
+        .retentionPolicy('autgen')
+        .measurement('tick')
+    |window()
+        .periodCount(2)
+        .everyCount(1)
+    |last('ask_price')
+        .as('base_asks')
+    |groupBy('base_ccy')
+
+// Get views stream data
+var term_bids = stream
+    |from()
+        .retentionPolicy('autgen')
+        .measurement('tick')
+    |window()
+        .periodCount(2)
+        .everyCount(1)
+    |last('ask_price')
+        .as('term_bids')
+    |groupBy('term_ccy')
+    |httpOut('term_bids')
+
+var term_asks = stream
+    |from()
+        .retentionPolicy('autgen')
+        .measurement('tick')
+    |window()
+        .periodCount(2)
+        .everyCount(1)
+    |last('bid_price')
+        .as('term_asks')
+    |groupBy('term_ccy')
+    |httpOut('term_asks')
+
+// EURUSD
+var base_cy_asks= term_asks
+    |where(lambda: ('term_ccy' == 'EUR') )
+    	as
+    |join(base_bids)
+        .as('base_cy_stream', 'base_bids')
+        .tolerance(10s)
+        .on('term_ccy')
+        .fill('null')
+    |eval(lambda: 'term_asks' / 'base_bids')
+        .as('base_cy_asks')
+		.tags('base_cy_stream','base_cy_asks')
+    |httpOut('base_cy_asks')

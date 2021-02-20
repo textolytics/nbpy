@@ -1,0 +1,71 @@
+cmake .. -A x64 -DCMAKE_BUILD_TYPE=Release ^
+ -DSWIG_EXECUTABLE=C:\tools\swigwin-3.0.12\swig.exe ^
+ -DPYTHON_EXECUTABLE=C:\Python27\python.exe ^
+ -DPYTHON_LIBRARIES=C:\Python27\libs\python27.lib ^
+ -Dtensorflow_ENABLE_GPU=ON ^
+ -DCUDNN_HOME="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0"
+ 
+ 
+ C:\Users\User\tensorflow\tensorflow\contrib\cmake\build
+ 
+cmake .. -A x64  -DCMAKE_BUILD_TYPE=Release  -DSWIG_EXECUTABLE="C:\Users\User\Downloads\swigwin-3.0.12\swigwin-3.0.12\swig.exe"  -DPYTHON_EXECUTABLE="C:\Program Files\Python36\python.exe"  -DPYTHON_LIBRARIES="C:\Program Files\Python36\libs\python36.lib"  -Dtensorflow_BUILD_PYTHON_BINDINGS=ON  -Dtensorflow_ENABLE_GPU=ON  -Dtensorflow_ENABLE_GRPC_SUPPORT=ON  -DCUDNN_HOME="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0" -Dtensorflow_WIN_CPU_SIMD_OPTIONS=\arch:AVX2 
+
+ 
+ cmake .. -A x64  -DCMAKE_BUILD_TYPE=Release  -DSWIG_EXECUTABLE="C:\Users\User\Downloads\swigwin-3.0.12\swigwin-3.0.12\swig.exe"  -DPYTHON_EXECUTABLE="C:\Program Files\Python36\python.exe"  -DPYTHON_LIBRARIES="C:\Program Files\Python36\libs\python36.lib"  -Dtensorflow_BUILD_PYTHON_BINDINGS=ON  -Dtensorflow_ENABLE_GPU=ON  -Dtensorflow_ENABLE_GRPC_SUPPORT=ON  -DCUDNN_HOME="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0" -Dtensorflow_WIN_CPU_SIMD_OPTIONS=/arch:AVX2 
+ 
+export CMAKE_CXX_COMPILER="C:\\msys64\\usr\\bin\\g++.exe"
+CMAKE_C_COMPILER="C:\\msys64\\usr\\bin\\gcc.exe"
+ 
+ C:\msys64\usr\bin
+ set(CMAKE_C_COMPILER=C:\MinGW\bin\gcc.exe)
+ CMAKE_CXX_COMPILER=C:\MinGW\bin\g++.exe
+ 
+ 
+CMAKE_C_COMPILER="\c\MinGW\bin\gcc.exe"
+
+CMAKE_CXX_COMPILER="C:\\MinGW\\bin\\g++.exe"
+CMAKE_C_COMPILER="C:\\MinGW\\bin\\gcc.exe"
+
+
+ "C:\\Users\\User"
+ 
+  cmake .. -A -x64 -DCMAKE_BUILD_TYPE=Release ^
+ -DSWIG_EXECUTABLE="C:\Users\User\Downloads\swigwin-3.0.12\swigwin-3.0.12\swig.exe" ^
+ -DPYTHON_EXECUTABLE="C:\Program Files\Python36\python.exe" ^
+ -DPYTHON_LIBRARIES="C:\Program Files\Python36\libs\python36.lib" ^
+ -Dtensorflow_BUILD_PYTHON_BINDINGS=ON ^
+ -Dtensorflow_WIN_CPU_SIMD_OPTIONS=\arch:AVX2 ^
+ -Dtensorflow_ENABLE_GPU=ON ^
+ -Dtensorflow_ENABLE_GRPC_SUPPORT=ON ^
+ -DCUDNN_HOME="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0"
+ 
+ 
+ >bazel build --config=opt --copt=-mavx2 --config=mkl --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" 
+ 
+ --config=opt --copt=-mavx2 --config=mkl  //tensorflow/tools/pip_package:build_pip_package
+ 
+ 
+ --verbose_failures //tensorflow/tools/pip_package:build_pip_package
+ 
+ 
+ C:\Program Files\Python36\python.exe
+ 
+i 
+ C:\Program Files\Python36\lib\site-packages
+
+ set BAZEL_VC=C:\Users\User\Downloads
+ 
+ --config=cuda \\tensorflow\tools\pip_package:build_pip_package
+             
+			 
+			 \\tensorflow\tools\
+ 
+dir
+
+ set BAZEL_VC=C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.12.25827\bin\Hostx64\x64
+ 
+ 
+set BAZEL_VC=C:\Program Files\mingw-w64\x86_64-7.2.0-win32-sjlj-rt_v5-rev1\mingw64\bin
+C:\projects\bazel> bazel build C:\tools\\tensorflow:tensorflow  --incompatible_disallow_uncalled_set_constructor=false
+
+C:\tools\tensorflow

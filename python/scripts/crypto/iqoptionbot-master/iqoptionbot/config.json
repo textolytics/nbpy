@@ -1,0 +1,15 @@
+{
+    "connection_settings": {
+        "hostname": "iqoption.com",
+        "password": "y61327061",
+        "username": "samaranight@gmail.com"
+    }, 
+    "trade_settings": {
+        "actives": [
+            "actives"
+        ], 
+        "patterns": [
+            "patterns"
+        ]
+    }
+}
