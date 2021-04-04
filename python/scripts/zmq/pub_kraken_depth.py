@@ -10,7 +10,7 @@ sub_socket = sub_context.socket(zmq.SUB)
 sub_topicfilter = "kr_eurusd_tick"
 sub_socket.setsockopt_string(zmq.SUBSCRIBE, sub_topicfilter)
 sub_socket.setsockopt_string(zmq.SUBSCRIBE, "1")
-print ("Collecting updates from weather server...")
+print ("Collecting updates from kr_eurusd_tick...")
 sub_socket.connect("tcp://zmq.nb.lan:%s" % sub_port)
 
 # pub-socket server
@@ -21,10 +21,11 @@ pub_socket = pub_context.socket(zmq.PUB)
 
 # Update
 # socket.setsockopt(zmq.ZMQ_IMMEDIATE, 1)
-pub_socket.setsockopt(zmq.SNDBUF, 10240)
-pub_socket.setsockopt(zmq.SNDHWM, 10000)
+# pub_socket.setsockopt(zmq.SNDBUF, 10240)
+# pub_socket.setsockopt(zmq.SNDHWM, 10000)
 # socket.setsockopt(zmq.SWAP, 25000000)
 pub_socket.bind("tcp://*:%s" % pub_port)
+instrument_t0_cross = ""
 
 while True:
     response = sub_socket.recv_string()
@@ -109,5 +110,5 @@ while True:
     response_instrument_t1 = ccs.kraken.public.getOrderBook(instrument, 1)
     order_book_t1 = json.loads(response_instrument_t1)
     pub_socket.send_string("%s %s" % ('kr_depth', response_instrument_t1))
-    print (str(response_instrument_t0))
-    print (str(response_instrument_t1))
+    # print (str(response_instrument_t0))
+    # print (str(response_instrument_t1))
