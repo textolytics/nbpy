@@ -1,0 +1,14 @@
+#!/bin/bash
+#!/usr/bin/expect
+set arg1 [lindex $argv 0];
+set arg2 [lindex $argv 1];
+
+log_user 0;
+#set timeout 20
+spawn "/home/sdreep/nabla/usdjpy_usdcad_cadjpy"
+expect "*\r" 
+send "$arg1\r"
+expect "*\r" 
+send "$arg2\r"
+set igot $expect_out(buffer)
+interact return -output $igot

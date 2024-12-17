@@ -1,0 +1,9 @@
+str(kraken_local_timestamp) + str(instrument) + str(ask_price ) + str(ask_whole_lot_volume ) + str(ask_lot_volume ) + str (bid_price ) + str(bid_whole_lot_volume ) + str(bid_lot_volume ) + str (  last_trade_price ) + str(last_trade_lot_volume )+ str(volume_today ) + str(volume_last_24_hours) + str(vwap_today ) + str(vwap_last_24_hours) + str(number_of_trades_today ) + str(number_of_trades_last_24_hours) + str(low_today ) + str(low_last_24_hours) + str(high_today ) + str(high_last_24_hours) + 
+
+str(opening_price)
+
+
+ sudo  /usr/lib/jvm/java-8-oracle/bin/java -cp /opt/spark/spark-2.3.2-bin-hadoop2.7/conf/:/opt/spark/spark-2.3.2-bin-hadoop2.7/jars/* -Xmx1g org.apache.spark.deploy.SparkSubmit --class org.apache.spark.sql.hive.thriftserver.HiveThriftServer2  /home/spark/nabla/python/scripts/spark/pub_hive_norm_table_row.py
+
+
+str(kraken_local_timestamp) + str(instrument) + str(ask_price ) + str(ask_whole_lot_volume ) + str(ask_lot_volume ) + str (bid_price ) + str(bid_whole_lot_volume ) + str(bid_lot_volume ) + str (            last_trade_price ) + str(last_trade_lot_volume )+ str(volume_today ) + str(volume_last_24_hours) + str(vwap_today ) + str(vwap_last_24_hours) + str(number_of_trades_today ) + str(number_of_trades_last_24_hours) + str(low_today ) + str(low_last_24_hours) + str(high_today ) + str(high_last_24_hours) + str(opening_price)

@@ -1,0 +1,42 @@
+CREATE CONTINUOUS QUERY "count_euro" ON "twitter" BEGIN SELECT count("id") INTO "count_euro" FROM "tweet" WHERE "text" like '%euro%' GROUP BY time(1m) END
+CREATE CONTINUOUS QUERY "cq_name" ON "db_name" BEGIN SELECT min("field") INTO "target_measurement" FROM "current_measurement" GROUP BY time(30m) END
+
+SELECT holt_winters_with_fit(first(water_level),10,4) FROM h2o_feet where location='santa_monica' and time >= '2015-08-22 22:12:00' and time <= '2015-08-28 03:00:00' group by time(379m,348m)
+
+SELECT "water_level" FROM "h2o_feet" WHERE "location"='santa_monica' AND time >= '2015-08-22 22:12:00' AND time <= '2015-08-28 03:00:00'
+SELECT "bid" FROM "tick" WHERE "instrument"='USD_JPY' AND timestime >= '2017-02-08T17:04:26.881281024Z' AND time <= '2017-02-08T18:49:26.881281024Z'
+
+
+SELECT "bid" FROM "tick" WHERE "instrument"='USD_JPY'
+
+
+SELECT HOLT_WINTERS(FUNCTION("bid"),6,3) FROM oanda_tick WHERE "instrument"='USD_JPY' AND time >= '2017-02-08T17:04:26.881281024Z' GROUP BY time(6m)
+
+
+SELECT HOLT_WINTERS(FUNCTION("bid"),6,3) FROM oanda_tick WHERE "instrument"='USD_JPY' AND time >= '2017-02-08T17:04:26.881281024Z' GROUP BY time(6m)
+SELECT holt_winters(first(bid), 10, 4) FROM oanda_tick WHERE time > now() - 1h GROUP BY time(1m)
+
+
+SELECT holt_winters(first("bid"), 5, 2) FROM "oanda_tick" WHERE "instrument"='USD_JPY' AND time > now() - 5m GROUP BY time(1m)
+
+
+CREATE CONTINUOUS QUERY "holt_winters_USD_JPY" ON "oanda_tick" BEGIN SELECT holt_winters(first("bid"), 5, 2) FROM "oanda_tick" WHERE "instrument"='USD_JPY' AND time > now() - 5m GROUP BY time(1m)END
+
+
+CREATE CONTINUOUS QUERY "holt_winters_USD_JPY" ON "oanda_tick" BEGIN SELECT holt_winters(first("bid"), 5, 2) INTO "holt_winters_USD_JPY" FROM "oanda_tick" WHERE "instrument"='USD_JPY' AND time > now() - 5m GROUP BY time(1m) END
+
+select * from tick.$autogen.oanda_tick
+
+CREATE CONTINUOUS QUERY "holt_winters_USD_JPY" ON "tick" BEGIN SELECT holt_winters(first("bid"), 5, 2) INTO "holt_winters_USD_JPY" FROM "oanda_tick" WHERE "instrument"='USD_JPY' AND time > now() - 5m GROUP BY time(1m), * END
+
+
+
+SELECT holt_winters(first("bid"), 5, 2) FROM "oanda_tick" WHERE "instrument"='USD_JPY' AND time > now() - 5m GROUP BY time(1m)
+
+select * from tick.autogen.oanda_tick where "instrument"='USD_JPY' limit 10
+
+"CREATE CONTINUOUS QUERY holt_winters_USD_JPY ON tick BEGIN SELECT holt_winters(first(bid), 5, 2) INTO tick.autogen.holt_winters_USD_JPY FROM tick.autogen.oanda_tick WHERE "instrument"='USD_JPY' AND time > now() - 5m GROUP BY time(1m), * END"
+
+"CREATE CONTINUOUS QUERY "holt_winters_USD_JPY" ON "tick" BEGIN SELECT holt_winters(first("bid"), 5, 2) INTO "holt_winters_USD_JPY" FROM "oanda_tick" WHERE "instrument"='USD_JPY' AND time > now() - 5m GROUP BY time(1m), * END"
+
+CREATE CONTINUOUS QUERY "holt_winters_USD_JPY" ON "tick" RESAMPLE EVERY 1m BEGIN SELECT holt_winters(first("bid"), 5, 2) INTO "holt_winters_USD_JPY" FROM "oanda_tick" WHERE "instrument"='USD_JPY' AND time > now() - 5m GROUP BY time(1m), * END
