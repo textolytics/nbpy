@@ -1,22 +1,56 @@
-include:
-  # include the component located in the current project from the current SHA
-  - component: $CI_SERVER_FQDN/$CI_PROJECT_PATH/template@$CI_COMMIT_SHA
-    inputs:
-      python_container_image: python:3.11-slim
-      stage: test
-      persons_name: Tanuki
-
+image: docker:20.10.16
 
 stages:
-  - test
-  - release
+- lint
+- unit-test
+- build
 
-create-release:
-  stage: release
-  image: registry.gitlab.com/gitlab-org/release-cli:latest
-  script: echo "Creating release $CI_COMMIT_TAG"
-  rules:
-    - if: $CI_COMMIT_TAG
-  release:
-    tag_name: $CI_COMMIT_TAG
-    description: "Release $CI_COMMIT_TAG of components repository $CI_PROJECT_PATH"
+.pythonsetup_template:  &pythonsetup
+  before_script:
+    - apk add --update
+    - apk add python3 py3-pip python3-dev
+    - pip3 install virtualenv
+    - pip3 install --upgrade pip --quiet
+    - apk add make gcc musl-dev libffi-dev openssl-dev postgresql-dev libressl-dev
+
+lint:
+  image: python:3.10
+  stage: lint
+  script:
+    - pip3 install --upgrade pip --quiet
+    - pip3 install flake8
+    - flake8 main_directory --ignore=E501
+
+unit-test:
+  stage: unit-test
+  <<: *pythonsetup
+  services:
+    - docker:20.10.16-dind
+  variables:
+    MYSQL_DATABASE: "pythonProjectTest"
+    MYSQL_ROOT_PASSWORD: "password"
+  script:
+    - docker info
+    - export TEST_ENVIRONMENT=gitlab
+    - make mysql-docker-image
+    - make mysql-docker-container
+    - make unit-test
+  artifacts:
+    paths:
+      - logs/
+    expire_in: 1 day
+    when: always
+
+build-python-package:
+  stage: build
+  <<: *pythonsetup  
+  script:
+    - make build
+  only:
+    - master
+  artifacts:
+    paths:
+      - logs/
+      - dist/
+    expire_in: 1 day
+    when: always

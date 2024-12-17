@@ -1,55 +1,19 @@
-# Compiled Object files, Static and Dynamic libs (Shared Objects)
-*.o
-*.a
-*.so
+# Python Virtual Env
+venv/
+logs/
 
-# Folders
-_obj
-_test
-.vscode
+# Python build distribution
+dist/
+*.egg-info/
+build/
 
-# Architecture specific extensions/prefixes
-*.[568vq]
-[568vq].out
+# Python Cache
+main_directory/__pycache__
+main_directory/test/__pycache__
 
-*.cgo1.go
-*.cgo2.c
-_cgo_defun.c
-_cgo_gotypes.go
-_cgo_export.*
-
-_testmain.go
-
-*.exe
-*.test
-*.prof
-
-# WebStorm
-*.iml
-
-# Directory-based project format:
+# Idea Config
 .idea/
-.idea/workspace.xml
-**/.idea/workspace.xml
 
-# mac hidden files
-.DS_Store
-
-#other
-node_modules/
-bower_components/
-.tmp
-.sass-cache
-builds/**/images/*
-*.ogg
-*.mp3
-*.mp4
-*.png
-*.jpeg
-
-# security / ssl
-*.pem
-*.xxjson
-
-# Oanda credentials
-*..env
+# Makefile dummy docker files
+mysql-docker-image
+mysql-docker-container
