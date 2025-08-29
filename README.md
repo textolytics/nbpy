@@ -15,119 +15,192 @@ This workspace looks like an evolving research/operations playground rather than
 - Text/geocoding/sentiment experiments (Twitter/RSS integrations)
 - Misc monitoring and Grafana queries
 
-Key goals of this README
------------------------
+# nbpy — Market data tooling, ETL and analysis workspace
 
-- Provide a concise description of what's in the repository.
-- Explain how to build the C/C++ example(s) with CMake.
-- Show how to find and run important scripts and where configuration lives.
-- Give quick troubleshooting and next-step guidance.
+## Overview
 
-Repository layout (important folders)
------------------------------------
+`nbpy` is a multi-language collection of tools, scripts and small services used for market data ingestion, ETL, analytics and lightweight research experiments. The repository contains C/C++ sample programs and build scaffolding, shell and Python scripts for data processing and orchestration, SQL and InfluxDB query snippets, and reference documentation.
+
+This workspace is a research/operations playground rather than a packaged product. It gathers utilities for:
+
+- ETL + ZMQ-based message bus patterns
+- Small C/C++ utilities and example programs (CMake-based)
+- Cross-rates and synthetic basket generation
+- Position/portfolio entry helpers and aggregation SQL
+- Text/geocoding/sentiment experiments (Twitter/RSS integrations)
+- Misc monitoring and Grafana queries
+
+## Key goals of this README
+
+- Describe repository contents and where to find components
+- Provide build instructions for the C/C++ sample
+- Show representative query examples and expected outputs
+- Provide sample message formats used on the message bus
+
+## Repository layout (important folders)
 
 - `c/` — C/C++ sources and a top-level `CMakeLists.txt`. Contains `main.cpp` and a small sample executable.
 - `conf/` — configuration snippets, CMake backups and utility files.
-- `db/` — SQL queries and pipeline SQL used by data processing.
+- `db/` — SQL queries and pipeline SQL used by data processing and InfluxDB snippets.
 - `doc/` — assorted PDF docs, spreadsheets and reference material.
 - `python/` — Python scripts and service helpers (look inside for runnable scripts).
 - `schema/` — XML schema artefacts (e.g., `kraken_synthetic.xml`).
-- `nginx/`, `grafana/`, `pve/`, `spark/`, `tensorflow/` — supporting configs and queries.
 
-Files of interest
------------------
+## Files of interest
 
 - `c/CMakeLists.txt` — tiny CMake project (builds `c/main.cpp`).
 - `c/main.cpp` — simple "Hello, World" C++ example.
-- `run-all.sh`, `run-all1.sh`, `run-all2.sh` — orchestration shell scripts (bash).
-- `setup.py` — not present in the repository root (if you expect a Python package, add one or check `python/`).
+- `db/influxdb_query.txt` — InfluxDB query examples and continuous query patterns.
+- `db/pipeline_oanda.sql` — SQL/stream examples for oanda_tick pipeline.
 
-Building the C/C++ sample (cross-platform)
------------------------------------------
+## Examples — queries, outputs and message formats
 
-This repo includes a minimal CMake project in `c/` that demonstrates how a C++ component is built.
+The repository contains many small examples. Below are concrete query examples taken from `db/` plus representative outputs and message formats you can expect while using the project.
 
-On Windows (PowerShell), using the Visual Studio generator or MinGW, run (from repo root):
+### InfluxDB query examples
 
-```powershell
-# Create an out-of-source build and compile
-cd c
-cmake -S . -B build -G "Visual Studio 17 2022" # or omit -G to let CMake pick a default
-cmake --build build --config Release
+Representative InfluxQL snippets (from `db/influxdb_query.txt`):
 
-# Run the produced executable (path depends on generator); with the simple setup it will be under build/Release or build/bin
-& .\build\Release\C.exe
+```sql
+-- create a continuous query that counts tweets mentioning 'euro'
+CREATE CONTINUOUS QUERY "count_euro" ON "twitter" \
+BEGIN SELECT count("id") INTO "count_euro" FROM "tweet" WHERE "text" like '%euro%' GROUP BY time(1m) END
+
+-- select recent tick bids for USD_JPY
+SELECT "bid" FROM "tick" WHERE "instrument"='USD_JPY' AND time >= '2017-02-08T17:04:26Z' AND time <= '2017-02-08T18:49:26Z'
+
+-- holt-winters forecasting example
+SELECT holt_winters(first("bid"), 5, 2) FROM "oanda_tick" WHERE "instrument"='USD_JPY' AND time > now() - 5m GROUP BY time(1m)
 ```
 
-Cross-platform (Linux/macOS / WSL / Git Bash):
+Expected (simplified) InfluxDB JSON-style result for the holt_winters query:
 
-```bash
-cd c
-mkdir -p build
-cd build
-cmake ..
-cmake --build . --config Release
-./C
+```json
+{
+	"results": [
+		{
+			"series": [
+				{
+					"name": "holt_winters",
+					"columns": ["time","holt_winters"],
+					"values": [
+						["2025-08-29T12:00:00Z", 151.2345],
+						["2025-08-29T12:01:00Z", 151.2360]
+					]
+				}
+			]
+		}
+	]
+}
 ```
 
-Notes
------
+> Note: Actual Influx responses depend on your InfluxDB version and client library. The shape above is a representative example.
 
-- Many of the provided scripts are Bash shell scripts. On Windows use WSL, Git Bash, or convert scripts to PowerShell if needed.
-- The repository contains multiple experimental and backup files (e.g., `*-1.c` files, `cmake-build-debug/`). Treat this repository as a lab rather than a packaged release.
-- A `setup.py` was not present in the root when this README was generated. If you plan to publish Python packages, move relevant scripts into `python/` and add a proper package manifest.
+### SQL / streaming examples (Postgres / materialized/continuous views)
 
-Running Python scripts
-----------------------
+Snippets from `db/pipeline_oanda.sql` used to create continuous views / streams:
 
-Look under the `python/` directory for runnable scripts. Typical workflow:
+```sql
+-- create a continuous view from a streaming source
+CREATE CONTINUOUS VIEW oanda_tick_view AS SELECT timestmp, instrument, bid, ask FROM oanda_tick;
 
-```powershell
-cd python
-# Review scripts: ls
-# Run a script with your active Python environment
-python .\your_script.py
+-- create a view that keeps the latest tick per instrument
+CREATE CONTINUOUS VIEW oanda_last_tick_transform AS
+	SELECT DISTINCT instrument, MAX(timestmp) AS last_ts, bid, ask
+	FROM oanda_tick
+	GROUP BY instrument, bid, ask;
+
+-- sample aggregation
+SELECT DISTINCT(instrument), avg(bid), avg(ask) FROM oanda_tick_view GROUP BY instrument LIMIT 150;
 ```
 
-If you use virtual environments:
+Representative SQL result (tabular):
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt  # if one exists, otherwise install what's needed
+| instrument | avg(bid) | avg(ask) |
+|------------|----------:|---------:|
+| USD_JPY    | 151.2345 | 151.2348 |
+| EUR_USD    | 1.0823   | 1.0825   |
+
+### ZMQ / message bus and tick message examples
+
+The repository uses message-bus patterns and stream-like payloads. Typical tick messages emitted on the bus are JSON objects like this:
+
+```json
+{
+	"timestmp": "2025-08-29T12:34:56.123Z",
+	"instrument": "USD_JPY",
+	"bid": 151.2345,
+	"ask": 151.2348,
+	"source": "oanda",
+	"tick_id": "abc123"
+}
 ```
 
-Data, configuration, and dashboards
-----------------------------------
+A small ETL consumer printing a received tick might produce console output similar to:
 
-- `db/` contains SQL used in pipelines (InfluxDB/Timescale/regular SQL variants). Use these queries as starting points for building dashboards.
-- `grafana/` contains at least one query file for Grafana.
+```
+[INFO] 2025-08-29T12:34:56Z Received tick: USD_JPY bid=151.2345 ask=151.2348
+[DEBUG] Persisted tick to table: oanda_tick (instrument=USD_JPY timestmp=2025-08-29T12:34:56Z)
+```
 
-Contributing and development notes
----------------------------------
+Another common message type in experiments is a synthetic-basket snapshot:
+
+```json
+{
+	"snapshot_ts": "2025-08-29T12:35:00Z",
+	"basket": "EURUSD_synthetic",
+	"components": [
+		{"instrument":"EUR_USD", "weight":0.6, "price":1.0823},
+		{"instrument":"USD_JPY", "weight":0.4, "price":151.2345}
+	],
+	"value": 65.4321
+}
+```
+
+### Example prints and outputs from local components
+
+- `c/main.cpp` — running the sample C++ binary prints a single line:
+
+```
+Hello, World!
+```
+
+- Example output when querying the latest ticks from the continuous SQL view (psql style):
+
+```
+ instrument |      last_ts       |   bid    |   ask
+------------+--------------------+----------+---------
+ USD_JPY    | 2025-08-29 12:34:56| 151.2345 |151.2348
+ EUR_USD    | 2025-08-29 12:34:55| 1.08230  |1.08250
+```
+
+## Notes
+
+- InfluxDB uses InfluxQL or Flux depending on the version; examples above are InfluxQL-style snippets.
+- The SQL shown in `db/pipeline_oanda.sql` is tailored for streaming/continuous-view engines (materialized/continuous views). Adapt to your SQL engine (TimescaleDB, Materialize, or ksqlDB) as needed.
+- Protect and provision API keys (Oanda, Kraken, Twitter) in `conf/` and do not commit secrets to the repository.
+
+## Contributing and development notes
 
 - This repo appears to be a personal/research workspace. If you want to collaborate, consider:
 	- Cleaning up experimental files and consolidating working scripts into `python/` and `c/`.
 	- Adding a `LICENSE` file and a top-level `CONTRIBUTING.md`.
 	- Adding a `requirements.txt` or `pyproject.toml` for Python dependencies.
 
-Troubleshooting
----------------
+## Troubleshooting
 
 - "CMake can't find a generator": install Visual Studio C++ workload or use WSL with a Unix toolchain.
 - "Shell scripts fail on Windows": run them inside WSL or Git Bash, or port commonly used scripts to PowerShell.
 - If a script references external APIs (Oanda, Kraken, Twitter), ensure credentials and `conf/` files are present and kept secure.
 
-Next steps (recommended)
-------------------------
+## Next steps (recommended)
 
 1. Add a repository `LICENSE` to clarify reuse.
 2. Consolidate runnable Python utilities into `python/` and add a `requirements.txt`.
 3. Remove or archive clearly experimental copies (files with `-1` suffix) to reduce noise.
 4. Add a short `CONTRIBUTING.md` describing how to run the main experiments and where persistent data should live.
 
-Contact / Attribution
----------------------
+## Contact / Attribution
 
 This README was generated by inspecting the workspace. If you want a tailored README for publishing a package or for onboarding teammates, tell me which component(s) you want to document in more detail (for example: the ETL flow, a Python service, or the C++ components).
 
