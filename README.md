@@ -174,6 +174,133 @@ Hello, World!
  EUR_USD    | 2025-08-29 12:34:55| 1.08230  |1.08250
 ```
 
+## Detailed examples (added)
+
+The sections below provide concrete, copy-pasteable examples to jump-start experiments in this workspace.
+
+### 1) Multi-Layer Perceptron (MLP) in C++ — weights and forward pass
+
+This example shows a tiny, self-contained MLP with one hidden layer using statically embedded weight matrices and biases. It is intended as a minimal reference you can copy into `c/mlp_example.cpp` and expand.
+
+
+### 2) Sentiment analysis of a Twitter stream — architecture and example outputs
+
+This recipe shows a simple streaming consumer architecture that:
+
+- connects to a tweet stream (Twitter API or a firehose proxy),
+- extracts text and (when available) user or tweet geo-location,
+- scores sentiment with a lightweight model (VADER/lexicon or a small neural model),
+- emits normalized JSON to the message bus and stores points in a time-series DB (with lat/lon tags/fields).
+
+Minimal Python pseudo-implementation using `tweepy` and `vaderSentiment` (adapt to your credentials and client):
+
+```python
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+import json
+
+analyzer = SentimentIntensityAnalyzer()
+
+def handle_tweet(tweet):
+	text = tweet['text']
+	score = analyzer.polarity_scores(text)['compound']
+
+	# geo fallback: tweet may include coordinates, user location string, or none
+	lat, lon = None, None
+	if 'coordinates' in tweet and tweet['coordinates']:
+		lon, lat = tweet['coordinates']['coordinates']
+
+	message = {
+		'timestmp': tweet['created_at'],
+		'text': text,
+		'score': score,
+		'city': tweet.get('place', {}).get('name'),
+		'country': tweet.get('place', {}).get('country'),
+		'lat': lat,
+		'lon': lon
+	}
+
+	# publish to ZMQ / Kafka / message bus and write to TSDB
+	print(json.dumps(message))
+
+# Example invocation with a mocked tweet
+mock = {
+  'created_at': '2025-08-29T12:00:00Z',
+  'text': 'Great meeting in Berlin today — exciting projects!',
+  'place': {'name':'Berlin','country':'Germany'},
+  'coordinates': None
+}
+
+handle_tweet(mock)
+```
+
+Example output JSON (one emitted message):
+
+```json
+{
+  "timestmp": "2025-08-29T12:00:00Z",
+  "text": "Great meeting in Berlin today — exciting projects!",
+  "score": 0.6249,
+  "city": "Berlin",
+  "country": "Germany",
+  "lat": null,
+  "lon": null
+}
+```
+
+Downstream storage and aggregations:
+- Insert each message into a measurement named `tweet_sentiment` with fields: `score` (float), `lat` (float), `lon` (float) and tags: `city`, `country`, `source`.
+- Compute rolling metrics like per-minute average sentiment per city (InfluxQL/Flux or SQL continuous view).
+
+Example InfluxDB line protocol for storing a geolocated sentiment point:
+
+```
+tweet_sentiment,city=Berlin,country=Germany,source=twitter score=0.6249,lat=52.5200,lon=13.4050 1693320000000000000
+```
+
+### 3) Grafana geolocation map dashboard — example and sample capital points
+
+Use Grafana's Worldmap / Geo Map panel or the newer "Geomap" plugin. The panel expects metrics with coordinates or a lookup table of lat/lon per key. Below is an example data model and sample points for several major capital cities (lat/lon and a sample sentiment score). Use the `tweet_sentiment` measurement described above.
+
+Sample points (city, country, lat, lon, sample score):
+
+| city | country | lat | lon | score |
+|------|---------:|----:|----:|------:|
+| London | UK | 51.5074 | -0.1278 | 0.12 |
+| Washington | USA | 38.9072 | -77.0369 | -0.05 |
+| Tokyo | Japan | 35.6895 | 139.6917 | 0.20 |
+| Beijing | China | 39.9042 | 116.4074 | -0.10 |
+| Moscow | Russia | 55.7558 | 37.6173 | -0.08 |
+| New Delhi | India | 28.6139 | 77.2090 | 0.05 |
+| Brasília | Brazil | -15.7939 | -47.8828 | 0.02 |
+| Canberra | Australia | -35.2809 | 149.1300 | 0.18 |
+| Paris | France | 48.8566 | 2.3522 | 0.09 |
+| Berlin | Germany | 52.5200 | 13.4050 | 0.15 |
+
+Example Flux/InfluxQL query for Grafana Geomap (InfluxQL style):
+
+```sql
+SELECT mean("score") AS "avg_score", mean("lat") AS "lat", mean("lon") AS "lon"
+FROM "tweet_sentiment"
+WHERE $timeFilter
+GROUP BY time($__interval), "city", "country"
+```
+
+Grafana panel notes:
+- Configure the Geomap to use field mapping: latitude=`lat`, longitude=`lon`, metric=`avg_score`.
+- Use a color gradient (red→green) mapped to `avg_score` to highlight negative/positive areas.
+- Add tooltip fields to show `city`, `country`, and `avg_score`.
+
+Example point feed (InfluxDB line protocol) for the sample table (one measurement per city):
+
+```
+tweet_sentiment,city=London,country=UK score=0.12,lat=51.5074,lon=-0.1278 1693320000000000000
+tweet_sentiment,city=Washington,country=USA score=-0.05,lat=38.9072,lon=-77.0369 1693320000000000000
+tweet_sentiment,city=Tokyo,country=Japan score=0.20,lat=35.6895,lon=139.6917 1693320000000000000
+```
+
+Security and privacy reminder:
+- When storing or plotting user-derived location data, be mindful of privacy laws and platform TOS; consider anonymization and aggregation before publishing dashboards.
+
 ## Notes
 
 - InfluxDB uses InfluxQL or Flux depending on the version; examples above are InfluxQL-style snippets.
