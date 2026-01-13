@@ -26,6 +26,7 @@ Requires-Python: >=3.7
 Description-Content-Type: text/markdown
 Requires-Dist: influxdb>=5.3.0
 Requires-Dist: pyzmq>=22.0.0
+Requires-Dist: msgpack>=1.0.0
 Provides-Extra: dev
 Requires-Dist: pytest>=6.0; extra == "dev"
 Requires-Dist: pytest-cov>=2.0; extra == "dev"

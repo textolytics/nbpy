@@ -3,13 +3,13 @@ import zmq
 from influxdb import InfluxDBClient
 
 # InfluxDB connections settings
-host = '192.168.0.33'
+host = 'localhost'
 port = 8086
 user = 'zmq'
 password = 'zmq'
 dbname = 'tick'
 myclient = InfluxDBClient(host, port, user, password, dbname, use_udp=False)
-port = "5558"
+port = "5578"
 
 # Socket to talk to server
 context = zmq.Context()

@@ -1,5 +1,6 @@
 influxdb>=5.3.0
 pyzmq>=22.0.0
+msgpack>=1.0.0
 
 [all]
 pytest>=6.0

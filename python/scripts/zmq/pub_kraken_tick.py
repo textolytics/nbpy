@@ -6,7 +6,7 @@ import datetime
 import umsgpack
 
 # ZMQ 
-port = "5578"
+port = "5558"
 context = zmq.Context()
 socket = context.socket(zmq.PUB)
 topic = 'kraken_tick'
@@ -51,10 +51,10 @@ while True:
 
     # bmsg = umsgpack.packb(msg, use_ordered_dict=True) 
     # umsgpack.dumps(msg)
-    #    umsgpack.pack(msg,t)
+    # umsgpack.pack(msg,t)
     # umsgpack.packb(msg, use_ordered_dict=True)
-    # socket.send_string( "%s %s" % (topic, )))
-    # umsgpack.pack(ccs.kraken.public.getTickerInformation(pair=instrument_list)
+    # socket.send_string( "%s %s" % (topic, ))
+    # umsgpack.pack(ccs.kraken.public.getTickerInformation(pair=instrument_list))
     socket.send_json(tickStream,1)
 
     print (tickStream)
