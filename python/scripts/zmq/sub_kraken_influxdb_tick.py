@@ -17,7 +17,7 @@ socket = context.socket(zmq.SUB)
 topicfilter = "kraken_tick"
 socket.setsockopt_string(zmq.SUBSCRIBE, topicfilter)
 socket.setsockopt_string(zmq.SUBSCRIBE, "1")
-print ("Collecting updates from weather server...")
+print ("Collecting updates from server...")
 socket.connect("tcp://localhost:%s" % port)
 
 # Process 5 updates
@@ -25,8 +25,8 @@ total_value = 0
 while True:
     response = socket.recv_string()
     topic, messagedata = response.split()
-    # print (response)
-    # topic, messagedata= response.split(' b')
+    print (response)
+    topic, messagedata= response.split(' b')
     instrument ,ask_price , ask_whole_lot_volume , ask_lot_volume, bid_price , bid_whole_lot_volume , bid_lot_volume,    last_trade_price , last_trade_lot_volume, volume_today, volume_last_24_hours ,vwap_today, vwap_last_24_hours ,number_of_trades_today,number_of_trades_last_24_hours ,low_today, low_last_24_hours ,high_today, high_last_24_hours ,opening_price = messagedata.split('\x01')
     # msg = json.dumps(messagedata)
     # total_value += int(messagedata)

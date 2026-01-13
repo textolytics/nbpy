@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  influxdb:
+    image: influxdb:latest
+    container_name: nbpy_influxdb
+    hostname: influxdb
+    
+    ports:
+      - "8086:8086"
+      - "8088:8088"
+    
+    environment:
+      INFLUXDB_DB: tick
+      INFLUXDB_HTTP_AUTH_ENABLED: "false"
+      INFLUXDB_HTTP_FLUX_ENABLED: "true"
+      INFLUXDB_DATA_LOG_ENABLED: "true"
+      INFLUXDB_ADMIN_ENABLED: "true"
+    
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+      - influxdb_config:/etc/influxdb
+      - ./influxdb.conf:/etc/influxdb/influxdb.conf:ro
+      - ./init-databases.sh:/docker-entrypoint-initdb.d/init-databases.sh:ro
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8086/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    
+    restart: unless-stopped
+    
+    networks:
+      - nbpy_network
+    
+    labels:
+      com.nbpy.description: "InfluxDB time-series database for nbpy project"
+      com.nbpy.version: "latest"
+
+  # Optional: Grafana for visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: nbpy_grafana
+    
+    ports:
+      - "3000:3000"
+    
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_INSTALL_PLUGINS: grafana-piechart-panel
+    
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+    
+    depends_on:
+      - influxdb
+    
+    restart: unless-stopped
+    
+    networks:
+      - nbpy_network
+    
+    labels:
+      com.nbpy.description: "Grafana visualization for nbpy project"
+
+volumes:
+  influxdb_data:
+    driver: local
+  influxdb_config:
+    driver: local
+  grafana_data:
+    driver: local
+
+networks:
+  nbpy_network:
+    driver: bridge
