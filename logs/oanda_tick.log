@@ -1,0 +1,52 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 189, in _run_module_as_main
+  File "<frozen runpy>", line 159, in _get_module_details
+  File "<frozen importlib._bootstrap_external>", line 1160, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1090, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/textolytics/nbpy/nbpy/zmq/publishers/oanda_tick.py", line 46
+    from python.scripts.zmq.pub_oanda_tick import *
+                                                  ^
+SyntaxError: import * only allowed at module level
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/textolytics/nbpy/nbpy/zmq/publishers/oanda_tick.py", line 79, in <module>
+    main()
+    ~~~~^^
+  File "/home/textolytics/nbpy/nbpy/zmq/publishers/oanda_tick.py", line 60, in main
+    publisher = OandaTickPublisher()
+  File "/home/textolytics/nbpy/nbpy/zmq/publishers/oanda_tick.py", line 38, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        port=5556,
+        ^^^^^^^^^^
+        topic='oanda_tick',
+        ^^^^^^^^^^^^^^^^^^^
+        service_name='oanda_tick'
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+TypeError: BasePublisher.__init__() got an unexpected keyword argument 'port'
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/textolytics/nbpy/nbpy/zmq/publishers/oanda_tick.py", line 79, in <module>
+    main()
+    ~~~~^^
+  File "/home/textolytics/nbpy/nbpy/zmq/publishers/oanda_tick.py", line 60, in main
+    publisher = OandaTickPublisher()
+  File "/home/textolytics/nbpy/nbpy/zmq/publishers/oanda_tick.py", line 38, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        port=5556,
+        ^^^^^^^^^^
+        topic='oanda_tick',
+        ^^^^^^^^^^^^^^^^^^^
+        service_name='oanda_tick'
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+TypeError: BasePublisher.__init__() got an unexpected keyword argument 'port'
+/home/textolytics/nbpy/nbpy/bin/python: No module named nbpy.zmq.publishers.oanda_tick
+/home/textolytics/nbpy/nbpy/bin/python: No module named nbpy.zmq.publishers.oanda_tick

@@ -1,0 +1,146 @@
+2026-01-14 00:11:48,971 - __main__ - INFO - Initialized RetentionPolicyManager for tick on localhost:8086
+2026-01-14 00:11:48,974 - __main__ - INFO - ✓ Connected to InfluxDB at localhost:8086
+2026-01-14 00:11:48,977 - __main__ - INFO - ✓ Database 'tick' already exists
+2026-01-14 00:11:48,977 - __main__ - INFO - ======================================================================
+2026-01-14 00:11:48,977 - __main__ - INFO - CONFIGURING RETENTION POLICIES
+2026-01-14 00:11:48,977 - __main__ - INFO - ======================================================================
+2026-01-14 00:11:48,982 - __main__ - INFO - Creating retention policy: default (duration: 30d)
+2026-01-14 00:11:48,994 - __main__ - INFO - ✓ Retention policy 'default' created
+2026-01-14 00:11:48,997 - __main__ - INFO - Creating retention policy: high_frequency (duration: 7d)
+2026-01-14 00:11:49,007 - __main__ - INFO - ✓ Retention policy 'high_frequency' created
+2026-01-14 00:11:49,010 - __main__ - INFO - Creating retention policy: long_term (duration: 365d)
+2026-01-14 00:11:49,020 - __main__ - INFO - ✓ Retention policy 'long_term' created
+2026-01-14 00:11:49,020 - __main__ - INFO - Setting 'default' as default retention policy...
+2026-01-14 00:11:49,030 - __main__ - INFO - ✓ 'default' is now default
+2026-01-14 00:11:49,032 - __main__ - INFO - Current retention policies:
+2026-01-14 00:11:49,032 - __main__ - ERROR - Error listing retention policies: 'replicationFactor'
+2026-01-14 00:11:49,032 - __main__ - INFO - ======================================================================
+2026-01-14 00:11:49,032 - __main__ - INFO - ✓ RETENTION POLICIES CONFIGURED SUCCESSFULLY
+2026-01-14 00:11:49,032 - __main__ - INFO - ======================================================================
+2026-01-14 00:11:49,032 - __main__ - INFO - Disconnected from InfluxDB
+2026-01-14 00:28:04,985 - __main__ - INFO - Initialized RetentionPolicyManager for tick on localhost:8086
+2026-01-14 00:28:04,989 - __main__ - INFO - ✓ Connected to InfluxDB at localhost:8086
+2026-01-14 00:28:04,992 - __main__ - INFO - ✓ Database 'tick' already exists
+2026-01-14 00:28:04,992 - __main__ - INFO - ======================================================================
+2026-01-14 00:28:04,992 - __main__ - INFO - CONFIGURING RETENTION POLICIES
+2026-01-14 00:28:04,992 - __main__ - INFO - ======================================================================
+2026-01-14 00:28:04,996 - __main__ - INFO - ✓ Retention policy 'default' already exists
+2026-01-14 00:28:04,999 - __main__ - INFO - ✓ Retention policy 'high_frequency' already exists
+2026-01-14 00:28:05,002 - __main__ - INFO - ✓ Retention policy 'long_term' already exists
+2026-01-14 00:28:05,002 - __main__ - INFO - Setting 'default' as default retention policy...
+2026-01-14 00:28:05,013 - __main__ - INFO - ✓ 'default' is now default
+2026-01-14 00:28:05,015 - __main__ - INFO - Current retention policies:
+2026-01-14 00:28:05,015 - __main__ - INFO -   - autogen: 0s (replication: N/A, shardDuration: N/A)
+2026-01-14 00:28:05,016 - __main__ - INFO -   - tick_30d: 720h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 00:28:05,016 - __main__ - INFO -   - default: 720h0m0s (replication: N/A, shardDuration: N/A) (DEFAULT)
+2026-01-14 00:28:05,016 - __main__ - INFO -   - high_frequency: 168h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 00:28:05,016 - __main__ - INFO -   - long_term: 8760h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 00:28:05,016 - __main__ - INFO - ======================================================================
+2026-01-14 00:28:05,016 - __main__ - INFO - ✓ RETENTION POLICIES CONFIGURED SUCCESSFULLY
+2026-01-14 00:28:05,016 - __main__ - INFO - ======================================================================
+2026-01-14 00:28:05,016 - __main__ - INFO - Disconnected from InfluxDB
+2026-01-14 00:41:00,877 - __main__ - INFO - Initialized RetentionPolicyManager for tick on localhost:8086
+2026-01-14 00:41:00,881 - __main__ - INFO - ✓ Connected to InfluxDB at localhost:8086
+2026-01-14 00:41:00,884 - __main__ - INFO - ✓ Database 'tick' already exists
+2026-01-14 00:41:00,884 - __main__ - INFO - ======================================================================
+2026-01-14 00:41:00,884 - __main__ - INFO - CONFIGURING RETENTION POLICIES
+2026-01-14 00:41:00,884 - __main__ - INFO - ======================================================================
+2026-01-14 00:41:00,888 - __main__ - INFO - ✓ Retention policy 'default' already exists
+2026-01-14 00:41:00,891 - __main__ - INFO - ✓ Retention policy 'high_frequency' already exists
+2026-01-14 00:41:00,893 - __main__ - INFO - ✓ Retention policy 'long_term' already exists
+2026-01-14 00:41:00,893 - __main__ - INFO - Setting 'default' as default retention policy...
+2026-01-14 00:41:00,905 - __main__ - INFO - ✓ 'default' is now default
+2026-01-14 00:41:00,907 - __main__ - INFO - Current retention policies:
+2026-01-14 00:41:00,907 - __main__ - INFO -   - autogen: 0s (replication: N/A, shardDuration: N/A)
+2026-01-14 00:41:00,907 - __main__ - INFO -   - tick_30d: 720h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 00:41:00,907 - __main__ - INFO -   - default: 720h0m0s (replication: N/A, shardDuration: N/A) (DEFAULT)
+2026-01-14 00:41:00,908 - __main__ - INFO -   - high_frequency: 168h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 00:41:00,908 - __main__ - INFO -   - long_term: 8760h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 00:41:00,908 - __main__ - INFO - ======================================================================
+2026-01-14 00:41:00,908 - __main__ - INFO - ✓ RETENTION POLICIES CONFIGURED SUCCESSFULLY
+2026-01-14 00:41:00,908 - __main__ - INFO - ======================================================================
+2026-01-14 00:41:00,908 - __main__ - INFO - Disconnected from InfluxDB
+2026-01-14 01:07:12,757 - __main__ - INFO - Initialized RetentionPolicyManager for tick on localhost:8086
+2026-01-14 01:07:12,760 - __main__ - INFO - ✓ Connected to InfluxDB at localhost:8086
+2026-01-14 01:07:12,763 - __main__ - INFO - ✓ Database 'tick' already exists
+2026-01-14 01:07:12,763 - __main__ - INFO - ======================================================================
+2026-01-14 01:07:12,763 - __main__ - INFO - CONFIGURING RETENTION POLICIES
+2026-01-14 01:07:12,763 - __main__ - INFO - ======================================================================
+2026-01-14 01:07:12,767 - __main__ - INFO - ✓ Retention policy 'default' already exists
+2026-01-14 01:07:12,768 - __main__ - INFO - ✓ Retention policy 'high_frequency' already exists
+2026-01-14 01:07:12,770 - __main__ - INFO - ✓ Retention policy 'long_term' already exists
+2026-01-14 01:07:12,770 - __main__ - INFO - Setting 'default' as default retention policy...
+2026-01-14 01:07:12,782 - __main__ - INFO - ✓ 'default' is now default
+2026-01-14 01:07:12,784 - __main__ - INFO - Current retention policies:
+2026-01-14 01:07:12,785 - __main__ - INFO -   - autogen: 0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:07:12,785 - __main__ - INFO -   - tick_30d: 720h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:07:12,785 - __main__ - INFO -   - default: 720h0m0s (replication: N/A, shardDuration: N/A) (DEFAULT)
+2026-01-14 01:07:12,785 - __main__ - INFO -   - high_frequency: 168h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:07:12,785 - __main__ - INFO -   - long_term: 8760h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:07:12,785 - __main__ - INFO - ======================================================================
+2026-01-14 01:07:12,785 - __main__ - INFO - ✓ RETENTION POLICIES CONFIGURED SUCCESSFULLY
+2026-01-14 01:07:12,785 - __main__ - INFO - ======================================================================
+2026-01-14 01:07:12,785 - __main__ - INFO - Disconnected from InfluxDB
+2026-01-14 01:09:36,803 - __main__ - INFO - Initialized RetentionPolicyManager for tick on localhost:8086
+2026-01-14 01:09:36,806 - __main__ - INFO - ✓ Connected to InfluxDB at localhost:8086
+2026-01-14 01:09:36,808 - __main__ - INFO - ✓ Database 'tick' already exists
+2026-01-14 01:09:36,808 - __main__ - INFO - ======================================================================
+2026-01-14 01:09:36,808 - __main__ - INFO - CONFIGURING RETENTION POLICIES
+2026-01-14 01:09:36,808 - __main__ - INFO - ======================================================================
+2026-01-14 01:09:36,812 - __main__ - INFO - ✓ Retention policy 'default' already exists
+2026-01-14 01:09:36,814 - __main__ - INFO - ✓ Retention policy 'high_frequency' already exists
+2026-01-14 01:09:36,817 - __main__ - INFO - ✓ Retention policy 'long_term' already exists
+2026-01-14 01:09:36,817 - __main__ - INFO - Setting 'default' as default retention policy...
+2026-01-14 01:09:36,831 - __main__ - INFO - ✓ 'default' is now default
+2026-01-14 01:09:36,833 - __main__ - INFO - Current retention policies:
+2026-01-14 01:09:36,833 - __main__ - INFO -   - autogen: 0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:09:36,833 - __main__ - INFO -   - tick_30d: 720h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:09:36,833 - __main__ - INFO -   - default: 720h0m0s (replication: N/A, shardDuration: N/A) (DEFAULT)
+2026-01-14 01:09:36,833 - __main__ - INFO -   - high_frequency: 168h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:09:36,834 - __main__ - INFO -   - long_term: 8760h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:09:36,834 - __main__ - INFO - ======================================================================
+2026-01-14 01:09:36,834 - __main__ - INFO - ✓ RETENTION POLICIES CONFIGURED SUCCESSFULLY
+2026-01-14 01:09:36,834 - __main__ - INFO - ======================================================================
+2026-01-14 01:09:36,834 - __main__ - INFO - Disconnected from InfluxDB
+2026-01-14 01:17:01,641 - __main__ - INFO - Initialized RetentionPolicyManager for tick on localhost:8086
+2026-01-14 01:17:01,644 - __main__ - INFO - ✓ Connected to InfluxDB at localhost:8086
+2026-01-14 01:17:01,647 - __main__ - INFO - ✓ Database 'tick' already exists
+2026-01-14 01:17:01,647 - __main__ - INFO - ======================================================================
+2026-01-14 01:17:01,647 - __main__ - INFO - CONFIGURING RETENTION POLICIES
+2026-01-14 01:17:01,647 - __main__ - INFO - ======================================================================
+2026-01-14 01:17:01,651 - __main__ - INFO - ✓ Retention policy 'default' already exists
+2026-01-14 01:17:01,654 - __main__ - INFO - ✓ Retention policy 'high_frequency' already exists
+2026-01-14 01:17:01,656 - __main__ - INFO - ✓ Retention policy 'long_term' already exists
+2026-01-14 01:17:01,657 - __main__ - INFO - Setting 'default' as default retention policy...
+2026-01-14 01:17:01,671 - __main__ - INFO - ✓ 'default' is now default
+2026-01-14 01:17:01,672 - __main__ - INFO - Current retention policies:
+2026-01-14 01:17:01,673 - __main__ - INFO -   - autogen: 0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:17:01,673 - __main__ - INFO -   - tick_30d: 720h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:17:01,673 - __main__ - INFO -   - default: 720h0m0s (replication: N/A, shardDuration: N/A) (DEFAULT)
+2026-01-14 01:17:01,673 - __main__ - INFO -   - high_frequency: 168h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:17:01,673 - __main__ - INFO -   - long_term: 8760h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:17:01,673 - __main__ - INFO - ======================================================================
+2026-01-14 01:17:01,673 - __main__ - INFO - ✓ RETENTION POLICIES CONFIGURED SUCCESSFULLY
+2026-01-14 01:17:01,673 - __main__ - INFO - ======================================================================
+2026-01-14 01:17:01,673 - __main__ - INFO - Disconnected from InfluxDB
+2026-01-14 01:18:30,583 - __main__ - INFO - Initialized RetentionPolicyManager for tick on localhost:8086
+2026-01-14 01:18:30,587 - __main__ - INFO - ✓ Connected to InfluxDB at localhost:8086
+2026-01-14 01:18:30,591 - __main__ - INFO - ✓ Database 'tick' already exists
+2026-01-14 01:18:30,591 - __main__ - INFO - ======================================================================
+2026-01-14 01:18:30,591 - __main__ - INFO - CONFIGURING RETENTION POLICIES
+2026-01-14 01:18:30,592 - __main__ - INFO - ======================================================================
+2026-01-14 01:18:30,597 - __main__ - INFO - ✓ Retention policy 'default' already exists
+2026-01-14 01:18:30,600 - __main__ - INFO - ✓ Retention policy 'high_frequency' already exists
+2026-01-14 01:18:30,603 - __main__ - INFO - ✓ Retention policy 'long_term' already exists
+2026-01-14 01:18:30,603 - __main__ - INFO - Setting 'default' as default retention policy...
+2026-01-14 01:18:30,613 - __main__ - INFO - ✓ 'default' is now default
+2026-01-14 01:18:30,615 - __main__ - INFO - Current retention policies:
+2026-01-14 01:18:30,615 - __main__ - INFO -   - autogen: 0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:18:30,615 - __main__ - INFO -   - tick_30d: 720h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:18:30,615 - __main__ - INFO -   - default: 720h0m0s (replication: N/A, shardDuration: N/A) (DEFAULT)
+2026-01-14 01:18:30,615 - __main__ - INFO -   - high_frequency: 168h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:18:30,615 - __main__ - INFO -   - long_term: 8760h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 01:18:30,615 - __main__ - INFO - ======================================================================
+2026-01-14 01:18:30,615 - __main__ - INFO - ✓ RETENTION POLICIES CONFIGURED SUCCESSFULLY
+2026-01-14 01:18:30,615 - __main__ - INFO - ======================================================================
+2026-01-14 01:18:30,615 - __main__ - INFO - Disconnected from InfluxDB

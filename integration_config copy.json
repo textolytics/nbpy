@@ -1,0 +1,254 @@
+{
+  "system": {
+    "name": "NBPY Integrated ZMQ Microservices",
+    "version": "2.0",
+    "localhost": "localhost",
+    "log_dir": "./logs",
+    "pid_dir": "./.pids",
+    "socket_dir": "/tmp/nbpy"
+  },
+  "docker": {
+    "compose_file": "./docker-compose.yml",
+    "services": {
+      "influxdb": {
+        "container_name": "nbpy-influxdb",
+        "image": "influxdb:1.8",
+        "port": 8086,
+        "health_check_url": "http://localhost:8086/ping",
+        "wait_timeout": 30
+      },
+      "grafana": {
+        "container_name": "nbpy-grafana",
+        "image": "grafana/grafana:latest",
+        "port": 3000,
+        "health_check_url": "http://localhost:3000/api/health",
+        "wait_timeout": 30,
+        "admin_user": "admin",
+        "admin_password": "admin123",
+        "datasource_provisioning": "./grafana_datasource.yml",
+        "dashboards_provisioning": "./grafana_dashboards.yml"
+      }
+    }
+  },
+  "influxdb": {
+    "host": "localhost",
+    "port": 8086,
+    "database": "tick",
+    "username": "zmq",
+    "password": "zmq",
+    "admin_username": "admin",
+    "admin_password": "admin123",
+    "retention_policies": {
+      "default": {
+        "duration": "30d",
+        "replication": 1,
+        "shard_duration": "1d",
+        "default": true
+      },
+      "high_frequency": {
+        "duration": "7d",
+        "replication": 1,
+        "shard_duration": "6h",
+        "default": false
+      },
+      "long_term": {
+        "duration": "365d",
+        "replication": 1,
+        "shard_duration": "30d",
+        "default": false
+      }
+    },
+    "measurements": {
+      "kraken_tick": {
+        "fields": ["bid", "ask", "last_trade_price", "volume", "vwap"],
+        "tags": ["pair", "exchange"]
+      },
+      "kraken_depth": {
+        "fields": ["bid_price", "bid_size", "ask_price", "ask_size"],
+        "tags": ["pair", "level", "exchange"]
+      },
+      "kraken_orders": {
+        "fields": ["order_id", "price", "amount"],
+        "tags": ["pair", "status", "type"]
+      },
+      "oanda_tick": {
+        "fields": ["bid", "ask", "volume"],
+        "tags": ["instrument", "exchange"]
+      },
+      "betfair_stream": {
+        "fields": ["back_price", "lay_price", "matched_amount"],
+        "tags": ["event_id", "market_id"]
+      },
+      "twitter_sentiment": {
+        "fields": ["sentiment_score", "text_length"],
+        "tags": ["author", "topic", "location"]
+      }
+    }
+  },
+  "publishers": [
+    {
+      "name": "kraken_tick",
+      "module": "nbpy.zmq.publishers.kraken_tick",
+      "class": "KrakenTickPublisher",
+      "port": 5558,
+      "topic": "kraken_tick",
+      "enabled": true,
+      "description": "Kraken ticker data publisher"
+    },
+    {
+      "name": "kraken_depth",
+      "module": "nbpy.zmq.publishers.kraken_depth",
+      "class": "KrakenDepthPublisher",
+      "port": 5560,
+      "topic": "kraken_depth",
+      "enabled": true,
+      "description": "Kraken order book depth publisher"
+    },
+    {
+      "name": "kraken_orders",
+      "module": "nbpy.zmq.publishers.kraken_orders",
+      "class": "KrakenOrdersPublisher",
+      "port": 5561,
+      "topic": "kraken_orders",
+      "enabled": true,
+      "description": "Kraken orders/trades publisher"
+    },
+    {
+      "name": "oanda_tick",
+      "module": "nbpy.zmq.publishers.oanda_tick",
+      "class": "OandaTickPublisher",
+      "port": 5562,
+      "topic": "oanda_tick",
+      "enabled": true,
+      "description": "OANDA ticker data publisher"
+    },
+    {
+      "name": "betfair_stream",
+      "module": "nbpy.zmq.publishers.betfair_stream",
+      "class": "BetfairStreamPublisher",
+      "port": 5564,
+      "topic": "betfair_stream",
+      "enabled": true,
+      "description": "Betfair streaming data publisher"
+    }
+  ],
+  "subscribers": [
+    {
+      "name": "kraken_influxdb_tick",
+      "module": "nbpy.zmq.subscribers.kraken_influxdb_tick",
+      "class": "KrakenTickToInfluxDBSubscriber",
+      "port": 5578,
+      "subscribe_to": "kraken_tick",
+      "publisher_host": "localhost",
+      "publisher_port": 5558,
+      "influxdb_measurement": "kraken_tick",
+      "enabled": true,
+      "description": "Kraken tick data to InfluxDB subscriber"
+    },
+    {
+      "name": "kraken_influxdb_depth",
+      "module": "nbpy.zmq.subscribers.kraken_influxdb_depth",
+      "class": "KrakenDepthToInfluxDBSubscriber",
+      "port": 5579,
+      "subscribe_to": "kraken_depth",
+      "publisher_host": "localhost",
+      "publisher_port": 5560,
+      "influxdb_measurement": "kraken_depth",
+      "enabled": true,
+      "description": "Kraken depth data to InfluxDB subscriber"
+    },
+    {
+      "name": "oanda_influxdb_tick",
+      "module": "nbpy.zmq.subscribers.oanda_influxdb_tick",
+      "class": "OandaTickToInfluxDBSubscriber",
+      "port": 5581,
+      "subscribe_to": "oanda_tick",
+      "publisher_host": "localhost",
+      "publisher_port": 5562,
+      "influxdb_measurement": "oanda_tick",
+      "enabled": true,
+      "description": "OANDA tick data to InfluxDB subscriber"
+    }
+  ],
+  "startup_sequence": {
+    "phase_1_containers": {
+      "order": 1,
+      "name": "Docker Containers",
+      "description": "Start InfluxDB and Grafana containers",
+      "wait_seconds": 5,
+      "services": ["influxdb", "grafana"]
+    },
+    "phase_2_retention": {
+      "order": 2,
+      "name": "InfluxDB Setup",
+      "description": "Configure retention policies and databases",
+      "wait_seconds": 3,
+      "dependencies": ["influxdb"]
+    },
+    "phase_3_publishers": {
+      "order": 3,
+      "name": "Publishers",
+      "description": "Start all ZMQ publishers in order",
+      "wait_seconds": 2,
+      "dependencies": []
+    },
+    "phase_4_subscribers": {
+      "order": 4,
+      "name": "Subscribers",
+      "description": "Start all ZMQ subscribers",
+      "wait_seconds": 2,
+      "dependencies": ["phase_3_publishers"]
+    },
+    "phase_5_grafana": {
+      "order": 5,
+      "name": "Grafana Setup",
+      "description": "Provision Grafana dashboards for all topics",
+      "wait_seconds": 2,
+      "dependencies": ["grafana", "phase_4_subscribers"]
+    },
+    "phase_6_validation": {
+      "order": 6,
+      "name": "Validation",
+      "description": "Validate message flow and data ingestion",
+      "wait_seconds": 5,
+      "dependencies": ["phase_4_subscribers", "influxdb"]
+    }
+  },
+  "validation": {
+    "zmq_topics": [
+      "kraken_tick",
+      "kraken_depth",
+      "kraken_orders",
+      "oanda_tick",
+      "betfair_stream"
+    ],
+    "message_timeout": 10,
+    "min_messages_per_topic": 1,
+    "influxdb_check": {
+      "enabled": true,
+      "min_points_per_measurement": 1,
+      "timeout": 30
+    },
+    "grafana_check": {
+      "enabled": true,
+      "expected_dashboards": ["kraken_tick", "kraken_depth", "oanda_tick", "betfair_stream"]
+    }
+  },
+  "urls": {
+    "influxdb_api": "http://localhost:8086",
+    "grafana_ui": "http://localhost:3000",
+    "grafana_api": "http://localhost:3000/api",
+    "zmq_localhost": "tcp://localhost"
+  },
+  "graceful_shutdown": {
+    "timeout_seconds": 30,
+    "signal_handlers": ["SIGINT", "SIGTERM"],
+    "stop_sequence": [
+      "subscribers",
+      "publishers",
+      "retention_policy",
+      "grafana",
+      "influxdb"
+    ]
+  }
+}

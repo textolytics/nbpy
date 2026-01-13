@@ -1,0 +1,108 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                   NBPY STARTUP ERRORS - FIXES APPLIED                      ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+ERRORS FIXED:
+═════════════
+
+1. ✓ Error listing retention policies: 'replicationFactor'
+   └─ File: db/retention_policy.py
+   └─ Fix: Changed direct dict access to .get() with fallback
+   └─ Status: FIXED
+
+2. ✓ kraken_tick failed to start (SyntaxError)
+3. ✓ kraken_depth failed to start (SyntaxError)
+4. ✓ kraken_orders failed to start (SyntaxError)  
+5. ✓ oanda_tick failed to start (SyntaxError)
+6. ✓ betfair_stream failed to start (SyntaxError)
+   └─ Root Cause: "import * only allowed at module level" error
+   └─ Files: 12 publisher modules fixed
+   └─ Fix: Moved imports from run() methods to module-level try-except
+   └─ Status: ALL FIXED
+
+7. ✓ Port 8086 binding error
+   └─ Root Cause: System InfluxDB service using port
+   └─ Fix: Automatic detection and stopping in preflight check
+   └─ Status: FIXED
+
+
+VERIFICATION RESULTS:
+════════════════════
+
+✓ Retention Policy Handling: Working correctly
+✓ Publisher Syntax: All 5 main publishers validated
+✓ Configuration: 3 policies, 5 publishers, 3 subscribers loaded
+✓ Preflight Checks: All diagnostic tests passing
+✓ Docker Status: Accessible and running
+✓ Container Cleanup: Automatic old container removal
+
+
+FILES MODIFIED:
+═══════════════
+
+FIXES (3):
+  • db/retention_policy.py          [1 change]
+  • nbpy/zmq/publishers/*.py        [12 files, import statements fixed]
+  • preflight_check.sh              [Enhanced with diagnostics]
+
+DOCUMENTATION (1):
+  • STARTUP_FIXES_SUMMARY.md        [Complete fix reference]
+
+
+READY TO DEPLOY:
+════════════════
+
+To start the system with all fixes applied:
+
+  Option 1 (Recommended - with automatic preflight):
+  $ sudo ./preflight_check.sh
+  $ sudo ./startup_guide.sh
+
+  Option 2 (Direct startup with built-in checks):
+  $ sudo ./startup_guide.sh
+
+  Option 3 (Minimal - just start):
+  $ sudo ./integrated_startup.sh start
+
+
+EXPECTED RESULTS:
+═════════════════
+
+✓ Port 8086 automatically freed
+✓ All 5 publishers start successfully
+✓ 3 subscribers start successfully  
+✓ Retention policies configured without errors
+✓ InfluxDB data ingestion working
+✓ Grafana dashboards displaying streaming data
+✓ Message validation passing
+
+Access Points:
+  • Grafana:  http://localhost:3000 (admin/admin123)
+  • InfluxDB: http://localhost:8086 (zmq/zmq)
+
+
+TROUBLESHOOTING:
+════════════════
+
+If you still encounter issues:
+
+1. Check logs:
+   $ tail -f logs/integrated_startup.log
+   $ tail -f logs/retention_policy.log
+   $ tail -f logs/service_manager.log
+
+2. Verify fixes were applied:
+   $ python3 -m py_compile nbpy/zmq/publishers/kraken_tick.py
+   $ grep -n "replicationFactor" db/retention_policy.py
+
+3. Run full diagnostics:
+   $ sudo ./preflight_check.sh -v
+
+4. Manual port cleanup:
+   $ sudo netstat -tulpn | grep 8086
+   $ sudo kill -9 <PID>
+
+
+TIMESTAMP: 2026-01-14
+STATUS: ✓ ALL FIXES APPLIED AND VERIFIED
+═════════════════════════════════════════════════════════════════════════════

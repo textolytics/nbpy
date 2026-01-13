@@ -28,20 +28,20 @@ Requires-Dist: influxdb>=5.3.0
 Requires-Dist: pyzmq>=22.0.0
 Requires-Dist: msgpack>=1.0.0
 Provides-Extra: dev
-Requires-Dist: pytest>=6.0; extra == "dev"
-Requires-Dist: pytest-cov>=2.0; extra == "dev"
 Requires-Dist: black>=21.0; extra == "dev"
 Requires-Dist: flake8>=3.9; extra == "dev"
+Requires-Dist: pytest-cov>=2.0; extra == "dev"
+Requires-Dist: pytest>=6.0; extra == "dev"
 Provides-Extra: docker
-Requires-Dist: docker>=5.0; extra == "docker"
 Requires-Dist: docker-compose>=1.29; extra == "docker"
+Requires-Dist: docker>=5.0; extra == "docker"
 Provides-Extra: all
-Requires-Dist: pytest>=6.0; extra == "all"
-Requires-Dist: pytest-cov>=2.0; extra == "all"
 Requires-Dist: black>=21.0; extra == "all"
-Requires-Dist: flake8>=3.9; extra == "all"
-Requires-Dist: docker>=5.0; extra == "all"
 Requires-Dist: docker-compose>=1.29; extra == "all"
+Requires-Dist: docker>=5.0; extra == "all"
+Requires-Dist: flake8>=3.9; extra == "all"
+Requires-Dist: pytest-cov>=2.0; extra == "all"
+Requires-Dist: pytest>=6.0; extra == "all"
 Dynamic: author
 Dynamic: classifier
 Dynamic: description

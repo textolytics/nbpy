@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/textolytics/nbpy/nbpy/zmq/subscribers/kraken_influxdb_tick.py", line 14, in <module>
+    from nbpy.zmq.base import BaseSubscriber, BaseInfluxDBSubscriber
+ImportError: cannot import name 'BaseInfluxDBSubscriber' from 'nbpy.zmq.base' (/home/textolytics/nbpy/nbpy/zmq/base.py)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/textolytics/nbpy/nbpy/zmq/subscribers/kraken_influxdb_tick.py", line 14, in <module>
+    from nbpy.zmq.base import BaseSubscriber, BaseInfluxDBSubscriber
+ImportError: cannot import name 'BaseInfluxDBSubscriber' from 'nbpy.zmq.base' (/home/textolytics/nbpy/nbpy/zmq/base.py)

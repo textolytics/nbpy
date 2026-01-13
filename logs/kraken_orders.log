@@ -1,0 +1,86 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 189, in _run_module_as_main
+  File "<frozen runpy>", line 159, in _get_module_details
+  File "<frozen importlib._bootstrap_external>", line 1160, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1090, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/textolytics/nbpy/nbpy/zmq/publishers/kraken_orders.py", line 46
+    from python.scripts.zmq.pub_kraken_orders import *
+                                                     ^
+SyntaxError: import * only allowed at module level
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/textolytics/nbpy/nbpy/zmq/publishers/kraken_orders.py", line 21, in <module>
+    from python.scripts.zmq.pub_kraken_orders import *
+  File "/home/textolytics/nbpy/python/scripts/zmq/pub_kraken_orders.py", line 27, in <module>
+    pub_socket.bind("tcp://*:%s" % pub_port)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/textolytics/nbpy/nbpy/lib/python3.13/site-packages/zmq/sugar/socket.py", line 320, in bind
+    super().bind(addr)
+    ~~~~~~~~~~~~^^^^^^
+  File "zmq/backend/cython/_zmq.py", line 1009, in zmq.backend.cython._zmq.Socket.bind
+    _check_rc(rc)
+    
+  File "zmq/backend/cython/_zmq.py", line 190, in zmq.backend.cython._zmq._check_rc
+    raise ZMQError(errno)
+    
+zmq.error.ZMQError: Address already in use (addr='tcp://*:5560')
+Collecting updates from weather server...
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/textolytics/nbpy/nbpy/zmq/publishers/kraken_orders.py", line 21, in <module>
+    from python.scripts.zmq.pub_kraken_orders import *
+  File "/home/textolytics/nbpy/python/scripts/zmq/pub_kraken_orders.py", line 27, in <module>
+    pub_socket.bind("tcp://*:%s" % pub_port)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/textolytics/nbpy/nbpy/lib/python3.13/site-packages/zmq/sugar/socket.py", line 320, in bind
+    super().bind(addr)
+    ~~~~~~~~~~~~^^^^^^
+  File "zmq/backend/cython/_zmq.py", line 1009, in zmq.backend.cython._zmq.Socket.bind
+    _check_rc(rc)
+    
+  File "zmq/backend/cython/_zmq.py", line 190, in zmq.backend.cython._zmq._check_rc
+    raise ZMQError(errno)
+    
+zmq.error.ZMQError: Address already in use (addr='tcp://*:5560')
+Collecting updates from weather server...
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/textolytics/nbpy/nbpy/zmq/publishers/kraken_orders.py", line 21, in <module>
+    from python.scripts.zmq.pub_kraken_orders import *
+  File "/home/textolytics/nbpy/python/scripts/zmq/pub_kraken_orders.py", line 27, in <module>
+    pub_socket.bind("tcp://*:%s" % pub_port)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/textolytics/nbpy/nbpy/lib/python3.13/site-packages/zmq/sugar/socket.py", line 320, in bind
+    super().bind(addr)
+    ~~~~~~~~~~~~^^^^^^
+  File "zmq/backend/cython/_zmq.py", line 1009, in zmq.backend.cython._zmq.Socket.bind
+    _check_rc(rc)
+    
+  File "zmq/backend/cython/_zmq.py", line 190, in zmq.backend.cython._zmq._check_rc
+    raise ZMQError(errno)
+    
+zmq.error.ZMQError: Address already in use (addr='tcp://*:5560')
+Collecting updates from weather server...
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/textolytics/nbpy/nbpy/zmq/publishers/kraken_orders.py", line 21, in <module>
+    from python.scripts.zmq.pub_kraken_orders import *
+  File "/home/textolytics/nbpy/python/scripts/zmq/pub_kraken_orders.py", line 27, in <module>
+    pub_socket.bind("tcp://*:%s" % pub_port)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/textolytics/nbpy/nbpy/lib/python3.13/site-packages/zmq/sugar/socket.py", line 320, in bind
+    super().bind(addr)
+    ~~~~~~~~~~~~^^^^^^
+  File "zmq/backend/cython/_zmq.py", line 1009, in zmq.backend.cython._zmq.Socket.bind
+    _check_rc(rc)
+    
+  File "zmq/backend/cython/_zmq.py", line 190, in zmq.backend.cython._zmq._check_rc
+    raise ZMQError(errno)
+    
+zmq.error.ZMQError: Address already in use (addr='tcp://*:5560')
+Collecting updates from weather server...
