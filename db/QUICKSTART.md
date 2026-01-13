@@ -29,7 +29,7 @@ def show_installation():
 2. Configure environment:
    Create .env file in /home/textolytics/nbpy/:
    
-   INFLUXDB_HOST=192.168.0.33
+   INFLUXDB_HOST=localhost
    INFLUXDB_PORT=8086
    INFLUXDB_USER=zmq
    INFLUXDB_PASSWORD=zmq
@@ -187,8 +187,8 @@ def show_troubleshooting():
 Problem: "Cannot connect to InfluxDB"
 Solution:
   1. Check InfluxDB is running: systemctl status influxdb
-  2. Verify host and port: telnet 192.168.0.33 8086
-  3. Check credentials: curl -u zmq:zmq http://192.168.0.33:8086/ping
+  2. Verify host and port: telnet localhost 8086
+  3. Check credentials: curl -u zmq:zmq http://localhost:8086/ping
 
 Problem: "Data not appearing in InfluxDB"
 Solution:

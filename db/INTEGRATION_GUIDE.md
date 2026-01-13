@@ -30,7 +30,7 @@ Create a `.env` file in the nbpy root directory:
 ```bash
 cat > /home/textolytics/nbpy/.env << 'EOF'
 # InfluxDB Configuration
-INFLUXDB_HOST=192.168.0.33
+INFLUXDB_HOST=localhost
 INFLUXDB_PORT=8086
 INFLUXDB_USER=zmq
 INFLUXDB_PASSWORD=zmq
@@ -59,7 +59,7 @@ Enhance existing subscriber scripts to use the new database module:
 **Before:**
 ```python
 from influxdb import InfluxDBClient
-client = InfluxDBClient('192.168.0.33', 8086, 'zmq', 'zmq', 'tick')
+client = InfluxDBClient('localhost', 8086, 'zmq', 'zmq', 'tick')
 # ... manual data formatting ...
 client.write_points(tick_json)
 ```
@@ -388,7 +388,7 @@ service = InfluxDBService()
 
 if not service.client:
     print("✗ Cannot connect to InfluxDB")
-    print(f"  Host: 192.168.0.33")
+    print(f"  Host: localhost")
     print(f"  Port: 8086")
     # Check if InfluxDB is running and accessible
 ```

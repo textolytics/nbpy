@@ -50,7 +50,7 @@ class InfluxDBConfig:
     host: str = os.environ.get('INFLUXDB_HOST', 'influxdb')
     port: int = int(os.environ.get('INFLUXDB_PORT', 8086))
     username: str = os.environ.get('INFLUXDB_USER', 'zmq')
-    password: str = os.environ.get('INFLUXDB_PASSWORD', 'zmq')
+    password: str = os.environ.get('INFLUXDB_PASSWORD', 'y61327061')
     database: str = os.environ.get('INFLUXDB_DB', 'tick')
     ssl: bool = os.environ.get('INFLUXDB_SSL', 'false').lower() == 'true'
     verify_ssl: bool = os.environ.get('INFLUXDB_VERIFY_SSL', 'true').lower() == 'true'

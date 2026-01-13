@@ -80,7 +80,7 @@ bridge.stop()
 ### Environment Variables
 
 ```bash
-export INFLUXDB_HOST=192.168.0.33
+export INFLUXDB_HOST=influxdb
 export INFLUXDB_PORT=8086
 export INFLUXDB_USER=zmq
 export INFLUXDB_PASSWORD=zmq
@@ -93,10 +93,10 @@ export INFLUXDB_BATCH_SIZE=500
 Create `.env` file:
 
 ```
-INFLUXDB_HOST=192.168.0.33
+INFLUXDB_HOST=influxdb
 INFLUXDB_PORT=8086
 INFLUXDB_USER=zmq
-INFLUXDB_PASSWORD=zmq
+INFLUXDB_PASSWORD=y61327061
 INFLUXDB_DB=tick
 INFLUXDB_BATCH_SIZE=500
 ```
@@ -107,10 +107,10 @@ INFLUXDB_BATCH_SIZE=500
 from nbpy.db import InfluxDBService, InfluxDBConfig
 
 config = InfluxDBConfig(
-    host="192.168.0.33",
+    host="influxdb",
     port=8086,
     username="zmq",
-    password="zmq",
+    password="y61327061",
     database="tick",
     batch_size=500
 )

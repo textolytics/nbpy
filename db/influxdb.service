@@ -1,0 +1,44 @@
+[Unit]
+Description=InfluxDB time-series database for nbpy project
+Documentation=https://docs.influxdata.com/influxdb/
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+User=influxdb
+Group=influxdb
+
+; Environment variables
+Environment=INFLUXDB_HOME=/opt/influxdb
+Environment=INFLUXDB_CONFIG=/etc/influxdb/influxdb.conf
+
+; Process management
+ExecStart=/opt/influxdb/usr/bin/influxd -config /etc/influxdb/influxdb.conf -pidfile /var/run/influxdb/influxdb.pid
+ExecReload=/bin/kill -HUP $MAINPID
+
+; Restart policy
+Restart=on-failure
+RestartSec=10s
+
+; Security hardening
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+
+; Resource limits
+LimitNOFILE=65536
+LimitNPROC=65536
+
+; Timeouts
+TimeoutStartSec=0
+TimeoutStopSec=10
+
+; Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=influxdb
+
+[Install]
+WantedBy=multi-user.target

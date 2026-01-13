@@ -165,7 +165,7 @@ pip install influxdb zmq
 
 ```bash
 cat > /home/textolytics/nbpy/.env << 'EOF'
-INFLUXDB_HOST=192.168.0.33
+INFLUXDB_HOST=localhost
 INFLUXDB_PORT=8086
 INFLUXDB_USER=zmq
 INFLUXDB_PASSWORD=zmq
@@ -230,7 +230,7 @@ bridge.run(blocking=True)
 from nbpy.db import InfluxDBService, InfluxDBConfig
 
 config = InfluxDBConfig(
-    host="192.168.0.33",
+    host="localhost",
     database="custom_db",
     batch_size=1000
 )
@@ -267,7 +267,7 @@ service = InfluxDBService(config)
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| INFLUXDB_HOST | 192.168.0.33 | InfluxDB server hostname |
+| INFLUXDB_HOST | localhost | InfluxDB server hostname |
 | INFLUXDB_PORT | 8086 | InfluxDB server port |
 | INFLUXDB_USER | zmq | InfluxDB username |
 | INFLUXDB_PASSWORD | zmq | InfluxDB password |

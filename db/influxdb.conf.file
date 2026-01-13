@@ -1,0 +1,57 @@
+# InfluxDB configuration - Minimal setup
+
+hostname = "influxdb"
+bind-address = ":8088"
+
+[meta]
+  dir = "/var/lib/influxdb/meta"
+  retention-autocreate = true
+  logging-enabled = true
+
+[data]
+  dir = "/var/lib/influxdb/data"
+  wal-dir = "/var/lib/influxdb/wal"
+  query-log-enabled = true
+  cache-max-memory-bytes = 1073741824
+  cache-snapshot-memory-bytes = 26214400
+  validate-keys = false
+
+[coordinator]
+  write-timeout = "10s"
+  max-concurrent-queries = 0
+  query-timeout = "0s"
+
+[retention]
+  enabled = true
+  check-interval = "30m"
+
+[shard-precreation]
+  enabled = true
+  check-interval = "10m"
+  advance-period = "30m"
+
+[monitor]
+  store-enabled = true
+  store-database = "_internal"
+  store-interval = "10s"
+
+[subscriber]
+  enabled = true
+  http-timeout = "30s"
+
+[http]
+  enabled = true
+  flux-enabled = true
+  bind-address = ":8086"
+  auth-enabled = true
+  log-enabled = true
+  https-enabled = false
+  max-body-size = 25000000
+  max-concurrent-requests = 0
+  max-line-size = 16777216
+
+[continuous_queries]
+  log-enabled = true
+  enabled = true
+  run-interval = "1s"
+

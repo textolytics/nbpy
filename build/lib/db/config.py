@@ -309,10 +309,10 @@ def get_config_manager() -> ConfigManager:
 # Example configuration file templates
 EXAMPLE_CONFIG_JSON = """
 {
-    "host": "localhost",
+    "host": "influxdb",
     "port": 8086,
     "username": "zmq",
-    "password": "zmq",
+    "password": "y61327061",
     "database": "tick",
     "ssl": false,
     "verify_ssl": true,
@@ -325,10 +325,10 @@ EXAMPLE_CONFIG_JSON = """
 
 EXAMPLE_CONFIG_ENV = """
 # InfluxDB Configuration
-INFLUXDB_HOST=localhost
+INFLUXDB_HOST=influxdb
 INFLUXDB_PORT=8086
 INFLUXDB_USER=zmq
-INFLUXDB_PASSWORD=zmq
+INFLUXDB_PASSWORD=y61327061
 INFLUXDB_DB=tick
 INFLUXDB_SSL=false
 INFLUXDB_VERIFY_SSL=true

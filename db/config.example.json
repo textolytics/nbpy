@@ -1,0 +1,14 @@
+
+{
+    "host": "localhost",
+    "port": 8086,
+    "username": "zmq",
+    "password": "zmq",
+    "database": "tick",
+    "ssl": false,
+    "verify_ssl": true,
+    "timeout": 10,
+    "batch_size": 500,
+    "write_consistency": "one",
+    "retention_policy": "autogen"
+}
