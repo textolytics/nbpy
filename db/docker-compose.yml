@@ -10,19 +10,17 @@ services:
       - "8086:8086"
     
     environment:
-      # InfluxDB 2.x Setup
-      INFLUXDB_DB: tick
-      INFLUXDB_ADMIN_USER: zmq
-      INFLUXDB_ADMIN_PASSWORD: zmq
-      INFLUXDB_HTTP_AUTH_ENABLED: "true"
-      # Initial setup (first run only)
+      # InfluxDB 2.x Initial Setup
       INFLUXDB_INIT_MODE: setup
-      INFLUXDB_INIT_USERNAME: zmq
-      INFLUXDB_INIT_PASSWORD: zmq
+      INFLUXDB_INIT_USERNAME: admin
+      INFLUXDB_INIT_PASSWORD: adminpassword
       INFLUXDB_INIT_ORG: nbpy
       INFLUXDB_INIT_BUCKET: tick
       INFLUXDB_INIT_RETENTION: 30d
       INFLUXDB_INIT_ADMIN_TOKEN: zmq-admin-token-secret
+      # UI Configuration
+      INFLUXDB_UI_ENABLED: "true"
+      INFLUXDB_REPORTING_DISABLED: "false"
     
     volumes:
       - influxdb_data:/var/lib/influxdb2
@@ -41,7 +39,7 @@ services:
       - nbpy_network
     
     labels:
-      com.nbpy.description: "InfluxDB 2.x time-series database with GUI for nbpy project"
+      com.nbpy.description: "InfluxDB 2.x time-series database with GUI on port 8086 for nbpy project"
       com.nbpy.version: "2.7-alpine"
 
   # Grafana for visualization
