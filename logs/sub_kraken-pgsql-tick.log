@@ -1,0 +1,1 @@
+/home/textolytics/nbpy/nbpy/bin/python: Error while finding module specification for 'nbpy.zmq.subscribers.kraken_pgsql_tick' (ModuleNotFoundError: No module named 'nbpy.zmq')

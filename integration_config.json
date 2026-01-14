@@ -189,7 +189,7 @@
     },
     "grafana_check": {
       "enabled": true,
-      "expected_dashboards": ["kraken_tick", "kraken_depth", "oanda_tick", "betfair_stream"]
+      "expected_dashboards": ["kraken_tick", "kraken_depth"]
     }
   },
   "urls": {

@@ -8,3 +8,17 @@ Traceback (most recent call last):
     from python.scripts.zmq.pub_kraken_tick import *
                                                    ^
 SyntaxError: import * only allowed at module level
+Traceback (most recent call last):
+  File "<frozen runpy>", line 189, in _run_module_as_main
+  File "<frozen runpy>", line 112, in _get_module_details
+  File "/home/textolytics/nbpy/nbpy/zmq/__init__.py", line 18, in <module>
+    from .ports import (
+    ...<17 lines>...
+    )
+  File "/home/textolytics/nbpy/nbpy/zmq/ports.py", line 197, in <module>
+    'kraken_influxdb_tick_sub': KRAKEN_INFLUXDB_TICK_SUB,
+                                ^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'KRAKEN_INFLUXDB_TICK_SUB' is not defined. Did you mean: 'KRAKEN_INFLUXDB_DEPTH_SUB'?
+/home/textolytics/nbpy/nbpy/bin/python: Error while finding module specification for 'nbpy.zmq.publishers.kraken_tick' (ModuleNotFoundError: No module named 'nbpy.zmq')
+/home/textolytics/nbpy/nbpy/bin/python: Error while finding module specification for 'nbpy.zmq.publishers.kraken_tick' (ModuleNotFoundError: No module named 'nbpy.zmq')
+/home/textolytics/nbpy/nbpy/bin/python: Error while finding module specification for 'nbpy.zmq.publishers.kraken_tick' (ModuleNotFoundError: No module named 'nbpy.zmq')

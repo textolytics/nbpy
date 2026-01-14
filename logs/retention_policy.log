@@ -144,3 +144,87 @@
 2026-01-14 01:18:30,615 - __main__ - INFO - ✓ RETENTION POLICIES CONFIGURED SUCCESSFULLY
 2026-01-14 01:18:30,615 - __main__ - INFO - ======================================================================
 2026-01-14 01:18:30,615 - __main__ - INFO - Disconnected from InfluxDB
+2026-01-14 02:22:22,604 - __main__ - INFO - Initialized RetentionPolicyManager for tick on localhost:8086
+2026-01-14 02:22:22,608 - __main__ - INFO - ✓ Connected to InfluxDB at localhost:8086
+2026-01-14 02:22:22,612 - __main__ - INFO - ✓ Database 'tick' already exists
+2026-01-14 02:22:22,612 - __main__ - INFO - ======================================================================
+2026-01-14 02:22:22,612 - __main__ - INFO - CONFIGURING RETENTION POLICIES
+2026-01-14 02:22:22,612 - __main__ - INFO - ======================================================================
+2026-01-14 02:22:22,617 - __main__ - INFO - ✓ Retention policy 'default' already exists
+2026-01-14 02:22:22,621 - __main__ - INFO - ✓ Retention policy 'high_frequency' already exists
+2026-01-14 02:22:22,623 - __main__ - INFO - ✓ Retention policy 'long_term' already exists
+2026-01-14 02:22:22,624 - __main__ - INFO - Setting 'default' as default retention policy...
+2026-01-14 02:22:22,635 - __main__ - INFO - ✓ 'default' is now default
+2026-01-14 02:22:22,637 - __main__ - INFO - Current retention policies:
+2026-01-14 02:22:22,638 - __main__ - INFO -   - autogen: 0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:22:22,638 - __main__ - INFO -   - tick_30d: 720h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:22:22,638 - __main__ - INFO -   - default: 720h0m0s (replication: N/A, shardDuration: N/A) (DEFAULT)
+2026-01-14 02:22:22,638 - __main__ - INFO -   - high_frequency: 168h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:22:22,638 - __main__ - INFO -   - long_term: 8760h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:22:22,638 - __main__ - INFO - ======================================================================
+2026-01-14 02:22:22,638 - __main__ - INFO - ✓ RETENTION POLICIES CONFIGURED SUCCESSFULLY
+2026-01-14 02:22:22,638 - __main__ - INFO - ======================================================================
+2026-01-14 02:22:22,639 - __main__ - INFO - Disconnected from InfluxDB
+2026-01-14 02:31:56,783 - __main__ - INFO - Initialized RetentionPolicyManager for tick on localhost:8086
+2026-01-14 02:31:56,786 - __main__ - INFO - ✓ Connected to InfluxDB at localhost:8086
+2026-01-14 02:31:56,789 - __main__ - INFO - ✓ Database 'tick' already exists
+2026-01-14 02:31:56,790 - __main__ - INFO - ======================================================================
+2026-01-14 02:31:56,790 - __main__ - INFO - CONFIGURING RETENTION POLICIES
+2026-01-14 02:31:56,790 - __main__ - INFO - ======================================================================
+2026-01-14 02:31:56,792 - __main__ - INFO - ✓ Retention policy 'default' already exists
+2026-01-14 02:31:56,794 - __main__ - INFO - ✓ Retention policy 'high_frequency' already exists
+2026-01-14 02:31:56,796 - __main__ - INFO - ✓ Retention policy 'long_term' already exists
+2026-01-14 02:31:56,796 - __main__ - INFO - Setting 'default' as default retention policy...
+2026-01-14 02:31:56,813 - __main__ - INFO - ✓ 'default' is now default
+2026-01-14 02:31:56,817 - __main__ - INFO - Current retention policies:
+2026-01-14 02:31:56,818 - __main__ - INFO -   - autogen: 0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:31:56,818 - __main__ - INFO -   - tick_30d: 720h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:31:56,818 - __main__ - INFO -   - default: 720h0m0s (replication: N/A, shardDuration: N/A) (DEFAULT)
+2026-01-14 02:31:56,818 - __main__ - INFO -   - high_frequency: 168h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:31:56,818 - __main__ - INFO -   - long_term: 8760h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:31:56,819 - __main__ - INFO - ======================================================================
+2026-01-14 02:31:56,819 - __main__ - INFO - ✓ RETENTION POLICIES CONFIGURED SUCCESSFULLY
+2026-01-14 02:31:56,819 - __main__ - INFO - ======================================================================
+2026-01-14 02:31:56,819 - __main__ - INFO - Disconnected from InfluxDB
+2026-01-14 02:34:03,693 - __main__ - INFO - Initialized RetentionPolicyManager for tick on localhost:8086
+2026-01-14 02:34:03,696 - __main__ - INFO - ✓ Connected to InfluxDB at localhost:8086
+2026-01-14 02:34:03,699 - __main__ - INFO - ✓ Database 'tick' already exists
+2026-01-14 02:34:03,699 - __main__ - INFO - ======================================================================
+2026-01-14 02:34:03,699 - __main__ - INFO - CONFIGURING RETENTION POLICIES
+2026-01-14 02:34:03,699 - __main__ - INFO - ======================================================================
+2026-01-14 02:34:03,702 - __main__ - INFO - ✓ Retention policy 'default' already exists
+2026-01-14 02:34:03,706 - __main__ - INFO - ✓ Retention policy 'high_frequency' already exists
+2026-01-14 02:34:03,708 - __main__ - INFO - ✓ Retention policy 'long_term' already exists
+2026-01-14 02:34:03,709 - __main__ - INFO - Setting 'default' as default retention policy...
+2026-01-14 02:34:03,721 - __main__ - INFO - ✓ 'default' is now default
+2026-01-14 02:34:03,723 - __main__ - INFO - Current retention policies:
+2026-01-14 02:34:03,723 - __main__ - INFO -   - autogen: 0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:34:03,723 - __main__ - INFO -   - tick_30d: 720h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:34:03,723 - __main__ - INFO -   - default: 720h0m0s (replication: N/A, shardDuration: N/A) (DEFAULT)
+2026-01-14 02:34:03,723 - __main__ - INFO -   - high_frequency: 168h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:34:03,723 - __main__ - INFO -   - long_term: 8760h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:34:03,723 - __main__ - INFO - ======================================================================
+2026-01-14 02:34:03,723 - __main__ - INFO - ✓ RETENTION POLICIES CONFIGURED SUCCESSFULLY
+2026-01-14 02:34:03,723 - __main__ - INFO - ======================================================================
+2026-01-14 02:34:03,724 - __main__ - INFO - Disconnected from InfluxDB
+2026-01-14 02:46:11,288 - __main__ - INFO - Initialized RetentionPolicyManager for tick on localhost:8086
+2026-01-14 02:46:11,291 - __main__ - INFO - ✓ Connected to InfluxDB at localhost:8086
+2026-01-14 02:46:11,294 - __main__ - INFO - ✓ Database 'tick' already exists
+2026-01-14 02:46:11,294 - __main__ - INFO - ======================================================================
+2026-01-14 02:46:11,294 - __main__ - INFO - CONFIGURING RETENTION POLICIES
+2026-01-14 02:46:11,294 - __main__ - INFO - ======================================================================
+2026-01-14 02:46:11,299 - __main__ - INFO - ✓ Retention policy 'default' already exists
+2026-01-14 02:46:11,304 - __main__ - INFO - ✓ Retention policy 'high_frequency' already exists
+2026-01-14 02:46:11,306 - __main__ - INFO - ✓ Retention policy 'long_term' already exists
+2026-01-14 02:46:11,307 - __main__ - INFO - Setting 'default' as default retention policy...
+2026-01-14 02:46:11,318 - __main__ - INFO - ✓ 'default' is now default
+2026-01-14 02:46:11,320 - __main__ - INFO - Current retention policies:
+2026-01-14 02:46:11,320 - __main__ - INFO -   - autogen: 0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:46:11,320 - __main__ - INFO -   - tick_30d: 720h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:46:11,320 - __main__ - INFO -   - default: 720h0m0s (replication: N/A, shardDuration: N/A) (DEFAULT)
+2026-01-14 02:46:11,320 - __main__ - INFO -   - high_frequency: 168h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:46:11,320 - __main__ - INFO -   - long_term: 8760h0m0s (replication: N/A, shardDuration: N/A)
+2026-01-14 02:46:11,320 - __main__ - INFO - ======================================================================
+2026-01-14 02:46:11,320 - __main__ - INFO - ✓ RETENTION POLICIES CONFIGURED SUCCESSFULLY
+2026-01-14 02:46:11,320 - __main__ - INFO - ======================================================================
+2026-01-14 02:46:11,321 - __main__ - INFO - Disconnected from InfluxDB

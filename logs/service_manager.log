@@ -238,3 +238,71 @@
 2026-01-14 01:18:42,764 - __main__ - INFO - ======================================================================
 2026-01-14 01:18:42,764 - __main__ - INFO - ALL SERVICES STOPPED
 2026-01-14 01:18:42,764 - __main__ - INFO - ======================================================================
+2026-01-14 02:22:27,741 - __main__ - INFO - Initialized ZMQServiceManager
+2026-01-14 02:22:27,741 - __main__ - INFO - ======================================================================
+2026-01-14 02:22:27,741 - __main__ - INFO - STARTING ALL ZMQ SERVICES
+2026-01-14 02:22:27,741 - __main__ - INFO - ======================================================================
+2026-01-14 02:22:27,742 - __main__ - INFO - Loaded configuration from /home/textolytics/nbpy/integration_config.json
+2026-01-14 02:22:27,742 - __main__ - INFO - Created 2 publisher service(s)
+2026-01-14 02:22:27,742 - __main__ - INFO - Created 2 subscriber service(s)
+2026-01-14 02:22:27,742 - __main__ - INFO - Starting publishers...
+2026-01-14 02:22:27,742 - __main__ - INFO - Starting kraken_tick: /home/textolytics/nbpy/nbpy/bin/python -m nbpy.zmq.publishers.kraken_tick
+2026-01-14 02:22:28,243 - __main__ - ERROR - ✗ kraken_tick failed to start
+2026-01-14 02:22:28,743 - __main__ - INFO - Starting kraken_depth: /home/textolytics/nbpy/nbpy/bin/python -m nbpy.zmq.publishers.kraken_depth
+2026-01-14 02:22:29,245 - __main__ - ERROR - ✗ kraken_depth failed to start
+2026-01-14 02:22:29,745 - __main__ - INFO - Stopping publishers...
+2026-01-14 02:22:29,745 - __main__ - INFO - Stopping kraken_tick (PID: 93869)...
+2026-01-14 02:22:29,745 - __main__ - INFO - ✓ kraken_tick stopped gracefully
+2026-01-14 02:22:29,746 - __main__ - INFO - Stopping kraken_depth (PID: 93883)...
+2026-01-14 02:22:29,746 - __main__ - INFO - ✓ kraken_depth stopped gracefully
+2026-01-14 02:32:01,928 - __main__ - INFO - Initialized ZMQServiceManager
+2026-01-14 02:32:01,929 - __main__ - INFO - ======================================================================
+2026-01-14 02:32:01,929 - __main__ - INFO - STARTING ALL ZMQ SERVICES
+2026-01-14 02:32:01,929 - __main__ - INFO - ======================================================================
+2026-01-14 02:32:01,929 - __main__ - INFO - Loaded configuration from /home/textolytics/nbpy/integration_config.json
+2026-01-14 02:32:01,929 - __main__ - INFO - Created 2 publisher service(s)
+2026-01-14 02:32:01,929 - __main__ - INFO - Created 2 subscriber service(s)
+2026-01-14 02:32:01,929 - __main__ - INFO - Starting publishers...
+2026-01-14 02:32:01,929 - __main__ - INFO - Starting kraken_tick: /home/textolytics/nbpy/nbpy/bin/python -m nbpy.zmq.publishers.kraken_tick
+2026-01-14 02:32:02,431 - __main__ - ERROR - ✗ kraken_tick failed to start
+2026-01-14 02:32:02,932 - __main__ - INFO - Starting kraken_depth: /home/textolytics/nbpy/nbpy/bin/python -m nbpy.zmq.publishers.kraken_depth
+2026-01-14 02:32:03,433 - __main__ - ERROR - ✗ kraken_depth failed to start
+2026-01-14 02:32:03,934 - __main__ - INFO - Stopping publishers...
+2026-01-14 02:32:03,935 - __main__ - INFO - Stopping kraken_tick (PID: 98942)...
+2026-01-14 02:32:03,936 - __main__ - INFO - ✓ kraken_tick stopped gracefully
+2026-01-14 02:32:03,936 - __main__ - INFO - Stopping kraken_depth (PID: 98992)...
+2026-01-14 02:32:03,937 - __main__ - INFO - ✓ kraken_depth stopped gracefully
+2026-01-14 02:34:08,825 - __main__ - INFO - Initialized ZMQServiceManager
+2026-01-14 02:34:08,825 - __main__ - INFO - ======================================================================
+2026-01-14 02:34:08,825 - __main__ - INFO - STARTING ALL ZMQ SERVICES
+2026-01-14 02:34:08,825 - __main__ - INFO - ======================================================================
+2026-01-14 02:34:08,826 - __main__ - INFO - Loaded configuration from /home/textolytics/nbpy/integration_config.json
+2026-01-14 02:34:08,826 - __main__ - INFO - Created 2 publisher service(s)
+2026-01-14 02:34:08,826 - __main__ - INFO - Created 2 subscriber service(s)
+2026-01-14 02:34:08,826 - __main__ - INFO - Starting publishers...
+2026-01-14 02:34:08,826 - __main__ - INFO - Starting kraken_tick: /home/textolytics/nbpy/nbpy/bin/python -m nbpy.zmq.publishers.kraken_tick
+2026-01-14 02:34:09,327 - __main__ - ERROR - ✗ kraken_tick failed to start
+2026-01-14 02:34:09,827 - __main__ - INFO - Starting kraken_depth: /home/textolytics/nbpy/nbpy/bin/python -m nbpy.zmq.publishers.kraken_depth
+2026-01-14 02:34:10,329 - __main__ - ERROR - ✗ kraken_depth failed to start
+2026-01-14 02:34:10,830 - __main__ - INFO - Stopping publishers...
+2026-01-14 02:34:10,830 - __main__ - INFO - Stopping kraken_tick (PID: 100902)...
+2026-01-14 02:34:10,830 - __main__ - INFO - ✓ kraken_tick stopped gracefully
+2026-01-14 02:34:10,831 - __main__ - INFO - Stopping kraken_depth (PID: 100919)...
+2026-01-14 02:34:10,831 - __main__ - INFO - ✓ kraken_depth stopped gracefully
+2026-01-14 02:46:16,429 - __main__ - INFO - Initialized ZMQServiceManager
+2026-01-14 02:46:16,429 - __main__ - INFO - ======================================================================
+2026-01-14 02:46:16,429 - __main__ - INFO - STARTING ALL ZMQ SERVICES
+2026-01-14 02:46:16,429 - __main__ - INFO - ======================================================================
+2026-01-14 02:46:16,431 - __main__ - INFO - Loaded configuration from /home/textolytics/nbpy/integration_config.json
+2026-01-14 02:46:16,432 - __main__ - INFO - Created 2 publisher service(s)
+2026-01-14 02:46:16,432 - __main__ - INFO - Created 2 subscriber service(s)
+2026-01-14 02:46:16,432 - __main__ - INFO - Starting publishers...
+2026-01-14 02:46:16,432 - __main__ - INFO - Starting kraken_tick: /home/textolytics/nbpy/nbpy/bin/python -m nbpy.zmq.publishers.kraken_tick
+2026-01-14 02:46:16,934 - __main__ - ERROR - ✗ kraken_tick failed to start
+2026-01-14 02:46:17,436 - __main__ - INFO - Starting kraken_depth: /home/textolytics/nbpy/nbpy/bin/python -m nbpy.zmq.publishers.kraken_depth
+2026-01-14 02:46:17,939 - __main__ - ERROR - ✗ kraken_depth failed to start
+2026-01-14 02:46:18,440 - __main__ - INFO - Stopping publishers...
+2026-01-14 02:46:18,442 - __main__ - INFO - Stopping kraken_tick (PID: 106511)...
+2026-01-14 02:46:18,442 - __main__ - INFO - ✓ kraken_tick stopped gracefully
+2026-01-14 02:46:18,442 - __main__ - INFO - Stopping kraken_depth (PID: 106526)...
+2026-01-14 02:46:18,443 - __main__ - INFO - ✓ kraken_depth stopped gracefully
